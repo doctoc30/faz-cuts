@@ -40,7 +40,6 @@
       border-radius: 30px;
       padding: 40px;
       margin-bottom: 30px;
-      position: relative;
       display: flex;
       justify-content: center;
       gap: 30px;
@@ -71,21 +70,13 @@
       font-size: 48px;
       color: white;
       box-shadow: 0 12px 30px rgba(255,107,0,0.3);
-      position: relative;
       margin: 0 auto;
     }
     .icon-preview .dot {
       font-size: 40px;
       position: relative;
       top: -4px;
-    }
-    .icon-preview .tag {
-      position: absolute;
-      bottom: 24px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.6);
+      color: white;
     }
     .icon-preview.large {
       width: 200px;
@@ -94,7 +85,12 @@
       font-size: 60px;
     }
     .icon-preview.large .dot { font-size: 50px; }
-    .icon-preview.large .tag { font-size: 12px; bottom: 30px; }
+
+    /* Black background version (matching website header) */
+    .icon-preview.black-bg {
+      background: #000000;
+    }
+    .icon-preview.black-bg .dot { color: #FF6B00; }
 
     .btn-group {
       display: flex;
@@ -133,7 +129,6 @@
       background: #e5e5e5;
     }
     .btn:active { transform: scale(0.96); }
-    .btn i { font-size: 18px; }
 
     .files-section {
       background: #f8f4f0;
@@ -192,8 +187,6 @@
       font-size: 13px;
       flex-shrink: 0;
     }
-    .steps li.done { color: #22c55e; }
-    .steps li.done .num { background: #22c55e; }
 
     .success-msg {
       background: #e8f5e9;
@@ -205,6 +198,11 @@
       margin-top: 16px;
     }
     .success-msg.show { display: block; }
+    .note {
+      font-size: 13px;
+      color: #888;
+      margin-top: 12px;
+    }
 
     @media (max-width: 600px) {
       .container { padding: 24px; }
@@ -217,25 +215,31 @@
 <body>
   <div class="container">
     <h1>VIBZ<span>.</span></h1>
-    <p class="sub">PWA Icon Generator — Your Exact Branding</p>
+    <p class="sub">PWA Icon Generator — Exact Website Logo</p>
 
     <!-- Preview -->
     <div class="preview-wrap">
       <div class="preview-box">
-        <div class="label">📱 Home Screen</div>
+        <div class="label">📱 Home Screen (Orange BG)</div>
         <div class="icon-preview">
           VIBZ<span class="dot">.</span>
-          <div class="tag">GBP PRO</div>
+        </div>
+      </div>
+      <div class="preview-box">
+        <div class="label">📱 Home Screen (Black BG)</div>
+        <div class="icon-preview black-bg">
+          VIBZ<span class="dot">.</span>
         </div>
       </div>
       <div class="preview-box">
         <div class="label">🖼️ 512×512 (Main)</div>
         <div class="icon-preview large">
           VIBZ<span class="dot">.</span>
-          <div class="tag">GBP PRO</div>
         </div>
       </div>
     </div>
+
+    <p class="note">⬆️ Matches your website logo: <strong>VIBZ.</strong> with orange dot</p>
 
     <!-- Download Buttons -->
     <div class="btn-group">
@@ -248,7 +252,7 @@
     </div>
 
     <div class="success-msg" id="successMsg">
-      ✅ All files downloaded! Scroll down for next steps.
+      ✅ All files downloaded! No "GBP PRO" text - just your exact VIBZ. logo!
     </div>
 
     <!-- Files Ready -->
@@ -272,137 +276,4 @@
     </div>
 
     <!-- Steps -->
-    <h3 style="text-align:left;margin-top:24px;font-size:16px;font-weight:900;">🚀 Next Steps:</h3>
-    <ul class="steps">
-      <li><span class="num">1</span> Download all files above</li>
-      <li><span class="num">2</span> Upload to your website <strong>root folder</strong></li>
-      <li><span class="num">3</span> Add this to your HTML <strong>&lt;head&gt;</strong>:</li>
-    </ul>
-
-    <div style="background:#1a1a1a;color:#fff;padding:16px 20px;border-radius:16px;text-align:left;font-size:13px;font-family:monospace;overflow-x:auto;margin-bottom:12px;">
-      &lt;link rel="manifest" href="/manifest.json"&gt;<br>
-      &lt;link rel="apple-touch-icon" href="/icon-192.png"&gt;<br>
-      &lt;meta name="theme-color" content="#FF6B00"&gt;
-    </div>
-
-    <ul class="steps">
-      <li><span class="num">4</span> ⚠️ <strong>Uninstall</strong> the old PWA from your phone</li>
-      <li><span class="num">5</span> Re-add to home screen — <strong>your VIBZ. branding is live!</strong> 🎉</li>
-    </ul>
-
-    <div style="margin-top:20px;padding:16px;background:#FFF5EE;border-radius:16px;border:2px solid #FF6B00;">
-      <strong style="color:#FF6B00;">✅ Done!</strong>
-      <span style="color:#555;font-weight:500;">Your icon will look exactly like the preview above.</span>
-    </div>
-  </div>
-
-  <script>
-    function downloadIcons() {
-      // Generate 512x512
-      const canvas512 = document.createElement('canvas');
-      canvas512.width = 512;
-      canvas512.height = 512;
-      const ctx512 = canvas512.getContext('2d');
-      
-      function roundRect(ctx, x, y, w, h, r) {
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.arcTo(x + w, y, x + w, y + h, r);
-        ctx.arcTo(x + w, y + h, x, y + h, r);
-        ctx.arcTo(x, y + h, x, y, r);
-        ctx.arcTo(x, y, x + w, y, r);
-        ctx.closePath();
-        return ctx;
-      }
-
-      roundRect(ctx512, 0, 0, 512, 512, 112);
-      ctx512.fillStyle = '#FF6B00';
-      ctx512.fill();
-
-      ctx512.fillStyle = '#FFFFFF';
-      ctx512.font = 'bold 140px "Syne", "Inter", sans-serif';
-      ctx512.textAlign = 'center';
-      ctx512.textBaseline = 'middle';
-      ctx512.fillText('VIBZ.', 256, 225);
-
-      ctx512.font = 'bold 22px "Inter", sans-serif';
-      ctx512.fillStyle = 'rgba(255,255,255,0.55)';
-      ctx512.fillText('GBP PRO', 256, 380);
-
-      const link512 = document.createElement('a');
-      link512.download = 'icon-512.png';
-      link512.href = canvas512.toDataURL('image/png');
-
-      // Generate 192x192
-      const canvas192 = document.createElement('canvas');
-      canvas192.width = 192;
-      canvas192.height = 192;
-      const ctx192 = canvas192.getContext('2d');
-
-      roundRect(ctx192, 0, 0, 192, 192, 42);
-      ctx192.fillStyle = '#FF6B00';
-      ctx192.fill();
-
-      ctx192.fillStyle = '#FFFFFF';
-      ctx192.font = 'bold 52px "Syne", "Inter", sans-serif';
-      ctx192.textAlign = 'center';
-      ctx192.textBaseline = 'middle';
-      ctx192.fillText('VIBZ.', 96, 85);
-
-      ctx192.font = 'bold 9px "Inter", sans-serif';
-      ctx192.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx192.fillText('GBP PRO', 96, 142);
-
-      const link192 = document.createElement('a');
-      link192.download = 'icon-192.png';
-      link192.href = canvas192.toDataURL('image/png');
-
-      link512.click();
-      setTimeout(() => link192.click(), 300);
-
-      document.getElementById('successMsg').classList.add('show');
-      setTimeout(() => {
-        document.getElementById('successMsg').classList.remove('show');
-      }, 5000);
-    }
-
-    function downloadManifest() {
-      const manifest = {
-        name: "VIBZ - Google Business Profile Specialists",
-        short_name: "VIBZ",
-        description: "We Fix Google Business Profiles & Local SEO - London's Premier GBP Agency",
-        start_url: "/",
-        display: "standalone",
-        background_color: "#FFF5EE",
-        theme_color: "#FF6B00",
-        orientation: "portrait",
-        icons: [
-          {
-            src: "/icon-192.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any maskable"
-          },
-          {
-            src: "/icon-512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable"
-          }
-        ]
-      };
-
-      const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
-      const link = document.createElement('a');
-      link.download = 'manifest.json';
-      link.href = URL.createObjectURL(blob);
-      link.click();
-
-      document.getElementById('successMsg').classList.add('show');
-      setTimeout(() => {
-        document.getElementById('successMsg').classList.remove('show');
-      }, 5000);
-    }
-  </script>
-</body>
-</html>
+    <h3 style="text-align:left;
