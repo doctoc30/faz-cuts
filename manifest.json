@@ -1,12 +1,13 @@
 {
-  "name": "Faz Cuts",
-  "short_name": "FazCuts",
-  "description": "London's Premier Barber - Book appointments and get last-minute slot alerts",
+  "name": "VIBZ",
+  "short_name": "VIBZ",
+  "description": "Google Business Profile Specialists",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#D4AF37",
   "orientation": "portrait",
+  "background_color": "#FFF5EE",
+  "theme_color": "#FF6B00",
   "icons": [
     {
       "src": "/icon-192.png",
