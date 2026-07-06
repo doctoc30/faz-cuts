@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>VIBZ | Google Business Profile Specialists</title>
+  <title>FixPro | Same-Day Phone Repairs London</title>
 
   <!-- PWA iPhone Home Screen -->
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-  <meta name="theme-color" content="#FF6B00">
+  <meta name="theme-color" content="#0066FF">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="VIBZ">
+  <meta name="apple-mobile-web-app-title" content="FixPro">
 
-<!-- OneSignal Web Push v16 - VIBZ -->
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "31f3576f-7be4-4c8e-b49a-56b905f4dcfc",
-      safari_web_id: "",
-      serviceWorkerPath: "OneSignalSDKWorker.js",
-      serviceWorkerUpdaterPath: "OneSignalSDKUpdaterWorker.js",
-      serviceWorkerParam: { scope: "/" },
-      notifyButton: { enable: false },
-      allowLocalhostAsSecureOrigin: true
+  <!-- OneSignal Web Push v16 -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "31f3576f-7be4-4c8e-b49a-56b905f4dcfc",
+        serviceWorkerPath: "OneSignalSDKWorker.js",
+        serviceWorkerUpdaterPath: "OneSignalSDKUpdaterWorker.js",
+        notifyButton: { enable: false },
+        allowLocalhostAsSecureOrigin: true
+      });
     });
-    console.log('OneSignal VIBZ initialized');
-  });
-</script>
+  </script>
 
-
-    
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-  :root{--primary:#FF6B00;--primary-light:#FFF5EE;--bg:#FFFFFF;--text:#121212;--card-bg:rgba(255,255,255,0.9);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom);--gray:#666;--border:rgba(255,107,0,0.1);}
+  :root{
+    --primary:#0066FF; /* Uswitch-style blue */
+    --primary-dark:#0052CC;
+    --primary-light:#F0F6FF;
+    --accent:#00D4AA; /* Success/CTA green */
+    --bg:#FFFFFF;
+    --text:#1A1A1A;
+    --gray:#666;
+    --gray-light:#F5F7FA;
+    --border:rgba(0,102,255,0.12);
+    --safe-top:env(safe-area-inset-top);
+    --safe-bottom:env(safe-area-inset-bottom);
+  }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Inter',sans-serif;}
-  body,html{height:100%;background-color:var(--primary-light);color:var(--text);overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;}
-  #app-loader{position:fixed;inset:0;background:#FFF2EB;z-index:10000;display:flex;align-items:center;justify-content:center;transition:transform 0.8s cubic-bezier(0.9,0,0.1,1);}
+  body,html{height:100%;background-color:var(--gray-light);color:var(--text);overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;}
+  
+  /* Loader - kept your style */
+  #app-loader{position:fixed;inset:0;background:var(--primary-light);z-index:10000;display:flex;align-items:center;justify-content:center;transition:transform 0.8s cubic-bezier(0.9,0,0.1,1);}
   .loader-content{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1;}
-  .loader-content span{color:#000000;}
   .layer-1{font-size:7rem;font-weight:900;color:var(--primary);letter-spacing:-5px;animation:slideFromRight 0.8s cubic-bezier(0.16,1,0.3,1) forwards;}
   .layer-2{font-size:2.5rem;font-weight:900;color:#000;letter-spacing:-1.5px;margin-top:5px;opacity:0;animation:slideFromLeft 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;}
   .layer-3{font-size:2.5rem;font-weight:900;color:var(--primary);letter-spacing:-1.5px;opacity:0;animation:slideFromTop 0.8s cubic-bezier(0.16,1,0.3,1) 0.8s forwards;}
   @keyframes slideFromRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
   @keyframes slideFromLeft{from{transform:translateX(-100px);opacity:0}to{transform:translateX(0);opacity:1}}
   @keyframes slideFromTop{from{transform:translateY(-50px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+  /* Menu Layer - kept structure */
   #app-menu-layer{position:fixed;inset:0;background:var(--primary-light);z-index:25000;display:flex;flex-direction:column;padding:calc(var(--safe-top) + 20px) 25px;transform:translateY(100%);transition:transform 0.6s cubic-bezier(0.32,0.72,0,1);overscroll-behavior:none;}
   #app-menu-layer.active{transform:translateY(0);}
   .menu-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
@@ -58,630 +67,449 @@
   #app-menu-layer.active .menu-item{opacity:1;transform:translateY(0);}
   .menu-item:nth-child(1){transition-delay:0.1s;}.menu-item:nth-child(2){transition-delay:0.2s;}.menu-item:nth-child(3){transition-delay:0.3s;}.menu-item:nth-child(4){transition-delay:0.4s;}
   .menu-footer{margin-top:auto;padding-bottom:calc(var(--safe-bottom) + 20px);font-weight:800;font-size:0.8rem;letter-spacing:1px;color:#bbb;text-align:center;}
-  #services-layer{position:fixed;inset:0;background:rgba(255,245,238,0.98);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);z-index:24000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;transform:translateY(100%);transition:transform 0.5s cubic-bezier(0.32,0.72,0,1);padding:20px;overscroll-behavior:none;}
-  #services-layer.active{transform:translateY(0);}
-  #services-title{color:var(--primary);margin-bottom:20px;font-weight:900;letter-spacing:-1px;font-size:2.2rem;text-align:center;}
-  #services-list{width:100%;display:flex;flex-direction:column;align-items:center;overflow-y:auto;max-height:60vh;gap:10px;padding:10px;overscroll-behavior:contain;}
-  @media(min-width:768px){#services-list{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;max-width:800px;width:90%;align-items:stretch;}#services-list .service-item{width:100%;min-width:auto;max-width:none;margin:0;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px 16px;font-size:1.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}}
-  @media(min-width:1200px){#services-list{grid-template-columns:repeat(3,1fr);max-width:1000px;}}
-  .service-item{font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;width:auto;min-width:280px;max-width:450px;text-align:center;padding:16px 32px;background:white;border-radius:60px;margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,0.04);border:1px solid rgba(255,107,0,0.1);cursor:pointer;transition:0.1s;display:inline-block;margin:0 auto;}
-  .service-item.click-highlight{background:var(--primary)!important;color:white!important;border:1px solid var(--primary)!important;box-shadow:0 12px 25px rgba(255,107,0,0.35)!important;}
-  .close-btn{width:60px;height:60px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 20px rgba(255,107,0,0.2);cursor:pointer;margin-top:20px;}
-  #category-layer{position:fixed;inset:0;background:rgba(255,245,238,0.98);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;transform:translateY(100%);transition:transform 0.5s cubic-bezier(0.32,0.72,0,1);padding:20px;overscroll-behavior:none;}
-  #category-layer.active{transform:translateY(0);}
-  #cat-title{color:var(--primary);margin-bottom:20px;font-weight:900;letter-spacing:-1px;font-size:2.2rem;text-align:center;}
-  #cat-list{width:100%;display:flex;flex-direction:column;align-items:center;overflow-y:auto;max-height:60vh;gap:10px;padding:10px;overscroll-behavior:contain;}
-  @media(min-width:768px){#cat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;max-width:800px;width:90%;align-items:stretch;}#cat-list .cat-item{width:100%;min-width:auto;max-width:none;margin:0;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px 16px;font-size:1.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}}
-  @media(min-width:1200px){#cat-list{grid-template-columns:repeat(3,1fr);max-width:1000px;}}
-  .cat-item{font-size:1.6rem;font-weight:800;color:var(--text);text-decoration:none;width:auto;min-width:280px;max-width:450px;text-align:center;padding:16px 32px;background:white;border-radius:60px;margin-bottom:8px;box-shadow:0 4px 12px rgba(0,0,0,0.04);border:1px solid rgba(255,107,0,0.1);cursor:pointer;transition:0.1s;display:inline-block;margin:0 auto;}
-  .cat-item.click-highlight{background:var(--primary)!important;color:white!important;border:1px solid var(--primary)!important;box-shadow:0 12px 25px rgba(255,107,0,0.35)!important;}
+  .close-btn{width:60px;height:60px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 20px rgba(0,102,255,0.2);cursor:pointer;margin-top:20px;}
+
+  /* Main App */
   #app-container{min-height:100vh;display:flex;flex-direction:column;opacity:0;transition:opacity 0.5s ease-in;position:relative;overscroll-behavior:none;}
-  header{padding:calc(var(--safe-top) + 30px) 25px 20px;display:flex;justify-content:space-between;align-items:center;background:transparent;width:100%;position:absolute;top:0;left:0;z-index:800;}
-  .header-spacer{height:130px;width:100%;}
-  .app-logo{font-size:2.2rem;font-weight:900;letter-spacing:-1.5px;color:var(--primary);}
-  .app-logo span{color:#000000;}
-  .content-scroll{flex:1;padding:0 25px 100px;overscroll-behavior:contain;}
-  .hero-area{text-align:center;padding:80px 0 50px;}
-  @media(max-width:480px){.header-spacer{height:120px;}.hero-area{padding:70px 0 40px;}}
-  .hero-area h1{font-size:3.2rem;font-weight:900;line-height:0.9;letter-spacing:-3px;margin-bottom:20px;color:var(--primary);max-width:800px;margin-left:auto;margin-right:auto;}
-  .typewriter-container{font-size:3.2rem;font-weight:900;color:#000000;line-height:0.9;letter-spacing:-3px;margin-bottom:30px;text-transform:capitalize;min-height:4.2rem;white-space:nowrap;display:inline-block;width:100%;text-align:center;overflow-x:visible;}
-  .search-container{background:#fff;border-radius:24px;padding:10px;display:flex;align-items:center;box-shadow:0 20px 40px rgba(255,107,0,0.15);max-width:580px;margin:0 auto 8px;}
-  .search-container input{flex:1;border:none;outline:none;padding:15px;font-size:1.1rem;font-weight:600;color:#1a1a1a;}
-  .search-container input::placeholder{color:#aaa;font-weight:400;}
-  .search-icon-btn{width:55px;height:55px;background:var(--primary);border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;border:none;}
-  .search-hint{text-align:center;font-size:0.7rem;color:#999;margin-bottom:40px;}
-  .search-hint i{color:var(--primary);margin-right:4px;}
-  .client-portal-btn{display:flex;align-items:center;gap:10px;background:#fff;padding:10px 20px 10px 15px;border-radius:24px;text-decoration:none;color:var(--text);font-weight:700;font-size:1rem;border:none;box-shadow:0 20px 40px rgba(255,107,0,0.15);transition:all 0.2s ease;height:55px;white-space:nowrap;}
-  .client-portal-btn i{font-size:1.3rem;color:var(--primary);transition:all 0.2s ease;}
-  .client-portal-btn:hover{background:var(--primary);color:white;transform:translateY(-2px);box-shadow:0 25px 50px rgba(255,107,0,0.25);}
-  .client-portal-btn:hover i{color:white;}
-  @media(max-width:480px){.client-portal-btn{padding:8px 16px 8px 12px;gap:8px;height:48px;}.client-portal-btn span{font-size:0.85rem;display:inline-block;}.client-portal-btn i{font-size:1.1rem;}}
-  .section-header{font-size:0.85rem;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:35px;display:block;text-align:center;}
-  .hiw-section{margin:0 auto 60px;max-width:700px;}
-  .hiw-steps{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
-  .hiw-step{background:white;border-radius:24px;padding:20px 22px;display:flex;align-items:flex-start;gap:18px;box-shadow:0 6px 20px rgba(255,107,0,0.06);border:1px solid var(--border);}
-  .hiw-num{width:42px;height:42px;border-radius:50%;background:var(--primary);color:white;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .hiw-content h3{font-size:1rem;font-weight:800;margin-bottom:4px;}
-  .hiw-content p{font-size:13px;color:#777;line-height:1.6;}
-  .listing-section{margin:0 auto 60px;max-width:700px;}
-  .listing-header{text-align:center;margin-bottom:24px;}
-  .listing-header .lst-badge{font-size:.8rem;font-weight:800;letter-spacing:3px;color:var(--primary);display:block;margin-bottom:8px;text-transform:uppercase;}
-  .listing-header h2{font-size:2rem;font-weight:900;letter-spacing:-1px;line-height:1.1;}
-  .listing-header h2 span{color:var(--primary);}
-  .listing-header p{font-size:13px;color:#888;margin-top:8px;line-height:1.6;max-width:420px;margin-left:auto;margin-right:auto;}
-  .biz-card{background:white;border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.10);border:2px solid #eee;max-width:380px;margin:0 auto;position:relative;}
-  .biz-card.vibz-after{border-color:var(--primary);box-shadow:0 24px 60px rgba(255,107,0,0.15);}
-  .biz-hero{width:100%;height:160px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .biz-hero-bg-circles{position:absolute;inset:0;overflow:hidden;}
-  .biz-hero-bg-circles span{position:absolute;border-radius:50%;background:rgba(255,107,0,0.08);}
-  .biz-hero-bg-circles span:nth-child(1){width:200px;height:200px;top:-60px;right:-40px;}
-  .biz-hero-bg-circles span:nth-child(2){width:120px;height:120px;bottom:-30px;left:20px;}
-  .biz-hero-bg-circles span:nth-child(3){width:80px;height:80px;top:20px;left:60px;background:rgba(255,107,0,0.05);}
-  .biz-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.4) 100%);}
-  .biz-open-tag{position:absolute;top:12px;left:12px;background:#22c55e;color:white;font-size:10px;font-weight:900;letter-spacing:1.5px;padding:5px 12px;border-radius:60px;display:flex;align-items:center;gap:5px;}
-  .biz-open-dot{width:6px;height:6px;border-radius:50%;background:white;animation:pulse-dot 1.4s ease-in-out infinite;}
-  @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.7}}
-  .biz-rating-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);color:white;font-size:11px;font-weight:800;padding:5px 10px;border-radius:60px;display:flex;align-items:center;gap:5px;}
-  .biz-rating-badge .star{color:#f5b81b;}
-  .biz-body{padding:16px 18px;}
-  .biz-name-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;}
-  .biz-name{font-size:1.1rem;font-weight:900;color:var(--text);}
-  .biz-verified-chip{display:flex;align-items:center;gap:4px;background:#e8f5e9;color:#2e7d32;font-size:9px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:60px;white-space:nowrap;}
-  .biz-verified-chip i{font-size:9px;}
-  .biz-cat-row{font-size:11px;color:#888;margin-bottom:10px;font-weight:600;}
-  .biz-cat-row span{color:var(--primary);font-weight:700;}
-  .biz-stars-row{display:flex;align-items:center;gap:6px;margin-bottom:12px;}
-  .biz-stars{display:flex;gap:2px;}
-  .biz-star{font-size:14px;color:#f5b81b;}
-  .biz-star.off{color:#e0e0e0;}
-  .biz-review-txt{font-size:11px;color:#888;font-weight:600;}
-  .biz-info-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:12px;font-weight:600;color:#444;}
-  .biz-info-row:last-of-type{border-bottom:none;}
-  .biz-info-row i{width:16px;color:var(--primary);font-size:12px;flex-shrink:0;}
-  .biz-actions{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap;}
-  .biz-act{flex:1;min-width:60px;background:var(--primary-light);border:1.5px solid rgba(255,107,0,0.2);border-radius:14px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;font-weight:800;color:var(--primary);cursor:default;transition:all .2s;}
-  .biz-act i{font-size:15px;}
-  .biz-act.primary-act{background:var(--primary);color:white;border-color:var(--primary);}
-  .biz-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid #f5f5f5;}
-  .biz-tag{font-size:10px;font-weight:700;color:#555;background:#f5f5f5;padding:4px 10px;border-radius:60px;}
-  .vibz-powered{text-align:center;margin-top:12px;font-size:10px;font-weight:800;color:var(--primary);letter-spacing:1px;opacity:.7;}
-  .listing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;}
-  .toggle-label{font-size:13px;font-weight:800;color:#aaa;letter-spacing:1px;text-transform:uppercase;}
-  .toggle-label.active{color:var(--text);}
-  .toggle-track{width:54px;height:28px;background:#ddd;border-radius:60px;cursor:pointer;position:relative;transition:background .3s;}
-  .toggle-track.on{background:var(--primary);}
-  .toggle-thumb{width:22px;height:22px;border-radius:50%;background:white;position:absolute;top:3px;left:3px;transition:left .3s;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
-  .toggle-track.on .toggle-thumb{left:29px;}
-  .aba-section{margin-bottom:52px;}
-  .aba-header{text-align:center;margin-bottom:28px;}
-  .aba-header .aba-badge{font-size:.8rem;font-weight:800;letter-spacing:3px;color:var(--primary);display:block;margin-bottom:8px;}
-  .aba-header h2{font-size:2rem;font-weight:900;letter-spacing:-1px;line-height:1.1;}
-  .aba-header h2 span{color:var(--primary);}
-  .aba-header p{font-size:13px;color:#888;margin-top:8px;line-height:1.6;}
-  .aba-card-wrap{position:relative;max-width:440px;margin:0 auto;}
-  .aba-card{background:white;border-radius:28px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.10);border:2px solid #eee;position:relative;}
-  .aba-card.after-active{border-color:var(--primary);box-shadow:0 24px 60px rgba(255,107,0,0.15);}
-  .aba-status-bar{padding:14px 18px;display:flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;transition:background .6s ease;}
-  .aba-status-bar.before{background:#ffeaea;color:#c62828;}
-  .aba-status-bar.after{background:#e8f5e9;color:#2e7d32;}
-  .aba-status-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-  .aba-status-bar.before .aba-status-dot{background:#c62828;}
-  .aba-status-bar.after .aba-status-dot{background:#2e7d32;animation:pulse-dot 1.4s ease-in-out infinite;}
-  .aba-biz-row{padding:18px 18px 0;}
-  .aba-biz-name{font-size:1.1rem;font-weight:900;margin-bottom:4px;}
-  .aba-biz-cat{font-size:11px;color:#888;margin-bottom:10px;transition:all .5s;}
-  .aba-stars-row{display:flex;align-items:center;gap:6px;margin-bottom:12px;padding:0 18px;}
-  .aba-stars{display:flex;gap:2px;}
-  .aba-star{font-size:15px;transition:color .4s ease,transform .3s ease;}
-  .aba-star.on{color:#f5b81b;}.aba-star.off{color:#ddd;}.aba-star.lighting{transform:scale(1.4);}
-  .aba-review-count{font-size:11px;color:#888;transition:all .5s;}
-  .aba-section-item{margin:0 18px 12px;border-radius:14px;padding:12px 14px;font-size:12px;line-height:1.6;position:relative;transition:background .5s ease,border-color .5s ease,opacity .4s ease;border:1.5px solid transparent;}
-  .aba-section-item.bad{background:#fff3f3;border-color:#ffcccc;color:#c62828;}
-  .aba-section-item.good{background:#f0fff4;border-color:#b2dfdb;color:#2e7d32;}
-  .aba-section-item.transforming{background:#fff8ee;border-color:var(--primary);}
-  .aba-item-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;opacity:.7;}
-  .aba-item-text{font-weight:600;}
-  .aba-item-icon{float:right;font-size:14px;}
-  .aba-verified{display:none;align-items:center;gap:5px;background:#e8f5e9;color:#2e7d32;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:99px;margin:0 18px 12px;border:1.5px solid #b2dfdb;}
-  .aba-verified.show{display:flex;animation:fadeSlideIn .5s ease;}
-  @keyframes fadeSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-  .aba-action-row{display:flex;gap:8px;padding:0 18px 16px;flex-wrap:wrap;transition:opacity .4s;}
-  .aba-action-btn{background:#f5f5f5;border-radius:99px;padding:7px 13px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;color:#444;transition:background .4s,color .4s;cursor:default;}
-  .aba-action-btn.active{background:var(--primary);color:white;}
-  .aba-pointer{position:absolute;font-size:24px;pointer-events:none;z-index:20;transition:top .8s cubic-bezier(.4,0,.2,1),left .8s cubic-bezier(.4,0,.2,1),opacity .4s;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));transform:rotate(-10deg);}
-  .aba-progress{display:flex;justify-content:center;gap:7px;margin-top:18px;}
-  .aba-dot{width:7px;height:7px;border-radius:50%;background:#e0d5ca;transition:all .4s;}
-  .aba-dot.active{background:var(--primary);width:22px;border-radius:99px;}
-  .aba-replay-btn{display:none;margin:14px auto 0;background:transparent;border:2px solid var(--primary);border-radius:60px;padding:10px 22px;font-weight:800;font-size:13px;color:var(--primary);cursor:pointer;transition:all .2s;}
-  .aba-replay-btn.show{display:block;}
-  .toggle-bar-section{max-width:700px;margin:0 auto 60px;background:white;border-radius:40px;box-shadow:0 12px 35px rgba(255,107,0,0.12);overflow:hidden;border:1px solid rgba(255,107,0,0.15);}
-  .toggle-bar-buttons{display:flex;background:#fff;border-bottom:2px solid #f0e8e2;}
-  .toggle-bar-btn{flex:1;text-align:center;padding:18px 8px;font-weight:800;font-size:1.25rem;letter-spacing:-0.3px;background:transparent;border:none;cursor:pointer;color:#aaa;transition:all 0.2s ease;font-family:inherit;border-bottom:3px solid transparent;}
-  .toggle-bar-btn.active{color:var(--primary);border-bottom-color:var(--primary);background:#fffaf5;}
-  .toggle-panel-content{padding:28px 28px 36px;background:white;}
-  .toggle-pane{display:none;}
-  .toggle-pane.active-pane{display:block;animation:fadeSlideUp 0.35s ease;}
-  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-  .faq-item{border-bottom:1px solid #f0e8e2;padding:16px 0;}
-  .faq-question{font-weight:800;font-size:1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);}
-  .faq-question i{color:var(--primary);transition:transform 0.2s;}
-  .faq-answer{font-size:0.85rem;color:#666;line-height:1.5;margin-top:10px;display:none;}
-  .faq-answer.show{display:block;}
-  .pricing-grid{display:flex;flex-direction:column;gap:24px;}
-  .pricing-card{border:1px solid #f0e8e2;border-radius:28px;padding:22px;transition:all 0.2s;}
-  .pricing-card h3{font-size:1.35rem;font-weight:900;margin-bottom:6px;}
-  .price{font-size:1.8rem;font-weight:900;color:var(--primary);margin:12px 0 6px;}
-  .price span{font-size:0.9rem;font-weight:600;color:#888;}
-  .pricing-features{margin:18px 0 12px;}
-  .pricing-features li{list-style:none;font-size:0.85rem;margin:8px 0;display:flex;align-items:center;gap:9px;font-weight:500;}
-  .pricing-features i.fa-check{color:#22c55e;font-size:0.75rem;}
-  .btn-pricing{background:var(--primary);border:none;border-radius:40px;padding:12px;width:100%;font-weight:800;color:white;cursor:pointer;margin-top:12px;}
-  .guarantee-grid{display:flex;flex-direction:column;gap:26px;}
-  .guarantee-card{display:flex;align-items:center;gap:18px;background:#FFF9F5;border-radius:28px;padding:20px;border:1px solid rgba(255,107,0,0.15);}
-  .g-icon{width:56px;height:56px;background:white;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;color:var(--primary);box-shadow:0 5px 12px rgba(0,0,0,0.03);}
-  .g-text h4{font-size:1rem;font-weight:900;margin-bottom:4px;}
-  .g-text p{font-size:0.8rem;color:#666;line-height:1.4;}
-  .subscription-section{width:100%;max-width:700px;margin:0 auto 40px;background:transparent;padding:20px 15px;position:relative;}
-  .subscribe-heading{text-align:center;margin-bottom:20px;position:relative;}
-  .subscribe-heading h2{font-size:3rem;font-weight:900;color:var(--primary);letter-spacing:2px;text-transform:uppercase;text-shadow:0 5px 15px rgba(255,107,0,0.2);display:inline-block;position:relative;}
-  .arrow-pointer{position:absolute;top:100%;left:50%;transform:translateX(-50%) rotate(90deg);color:var(--primary);font-size:3rem;animation:pointDown 1.8s ease-in-out infinite;filter:drop-shadow(0 5px 8px rgba(255,107,0,0.4));margin-top:5px;}
-  @keyframes pointDown{0%{transform:translateX(-50%) translateY(-10px) rotate(90deg);opacity:0.7;}50%{transform:translateX(-50%) translateY(15px) rotate(90deg);opacity:1;}100%{transform:translateX(-50%) translateY(-10px) rotate(90deg);opacity:0.7;}}
-  .subscribe-row{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:30px;}
-  .email-wrapper{flex:1;min-width:280px;position:relative;}
-  .email-field{width:100%;background:transparent!important;border:none!important;border-bottom:3px solid rgba(255,107,0,0.3)!important;border-radius:0!important;padding:18px 8px 12px 8px;font-size:1.3rem;font-weight:600;color:var(--text);outline:none;transition:border-color 0.2s;}
-  .email-field:focus{border-bottom-color:var(--primary)!important;}
-  .email-field::placeholder{color:rgba(0,0,0,0.45);font-weight:400;font-size:1.2rem;}
-  .letsgo-btn{background:white;border:2px solid var(--primary);border-radius:50px;padding:16px 42px;display:flex;align-items:center;justify-content:center;gap:12px;font-weight:900;font-size:1.5rem;color:var(--primary);box-shadow:0 15px 25px rgba(255,107,0,0.2);cursor:pointer;transition:all 0.25s ease;white-space:nowrap;}
-  .letsgo-btn i{font-size:1.5rem;transition:transform 0.25s;}
-  .letsgo-btn:hover{background:var(--primary);color:white;transform:translateY(-3px);box-shadow:0 20px 30px rgba(255,107,0,0.3);}
-  .letsgo-btn:hover i{transform:translateX(8px);color:white;}
-  .letsgo-btn:active{transform:scale(0.96);}
-  footer{margin-top:60px;padding:40px 25px 100px;background:transparent;text-align:center;border-top:1px solid rgba(255,107,0,0.1);}
-  .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;color:rgba(0,0,0,0.6);font-size:0.95rem;gap:30px;}
-  .legal-help-row{display:flex;justify-content:center;gap:40px;margin:5px 0 10px;width:100%;flex-wrap:wrap;}
-  .dropdown-container{position:relative;display:inline-block;}
-  .dropdown-btn{background:none;border:none;font-weight:700;font-size:1.2rem;color:var(--text);cursor:pointer;padding:8px 20px;border-radius:40px;background:white;box-shadow:0 5px 15px rgba(0,0,0,0.03);border:1px solid rgba(255,107,0,0.2);display:flex;align-items:center;gap:8px;transition:all 0.2s;}
-  .dropdown-btn i{color:var(--primary);font-size:1rem;}
-  .dropdown-btn:hover{background:var(--primary);color:white;border-color:var(--primary);}
-  .dropdown-btn:hover i{color:white;}
-  .dropdown-menu{position:absolute;top:110%;left:50%;transform:translateX(-50%);background:white;border-radius:24px;box-shadow:0 20px 40px rgba(255,107,0,0.15);min-width:200px;padding:12px 0;z-index:100;border:1px solid rgba(255,107,0,0.1);display:none;}
-  .dropdown-menu.active-drop{display:block;}
-  .dropdown-menu a{display:flex;align-items:center;gap:12px;padding:12px 24px;color:var(--text);text-decoration:none;font-weight:600;font-size:0.95rem;transition:background 0.1s;}
-  .dropdown-menu a i{color:var(--primary);width:20px;font-size:1rem;}
-  .dropdown-menu a:hover{background:#FFF5EE;}
-  .social-icons{max-width:400px;width:100%;margin:10px auto 0;justify-content:center;align-items:center;display:flex!important;flex-wrap:nowrap;gap:50px;}
-  .social-icons a{width:70px;height:70px;display:flex;justify-content:center;align-items:center;animation:coin-spin 6s linear infinite;transform-style:preserve-3d;perspective:1000px;margin:0;text-decoration:none;transition:all 0.3s ease;background:transparent;border-radius:50%;position:relative;top:10px;}
-  .social-icons a img{width:48px;height:48px;filter:brightness(0) saturate(100%) invert(47%) sepia(81%) saturate(2458%) hue-rotate(360deg) brightness(102%) contrast(106%);transition:transform 0.4s ease;}
-  .social-icons a:hover{animation-play-state:paused;transform:scale(1.15) translateY(-3px);}
-  @keyframes coin-spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
-  .copyright{font-weight:600;letter-spacing:0.5px;color:var(--text);opacity:0.7;margin-top:10px;}
-  .app-dock{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);height:70px;display:flex;justify-content:space-around;align-items:center;box-shadow:0 -5px 20px rgba(0,0,0,0.08);z-index:1000;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid rgba(255,107,0,0.15);width:100%;}
+  header{padding:calc(var(--safe-top) + 20px) 20px 16px;display:flex;justify-content:space-between;align-items:center;background:white;width:100%;position:sticky;top:0;left:0;z-index:800;border-bottom:1px solid var(--border);}
+  .app-logo{font-size:2rem;font-weight:900;letter-spacing:-1.5px;color:var(--primary);}
+  .app-logo span{color:var(--accent);}
+  .header-call{width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;box-shadow:0 4px 12px rgba(0,212,170,0.3);}
+
+  /* Uswitch-style Sticky CTA Tabs */
+  .cta-tabs{position:sticky;top:calc(var(--safe-top) + 81px);background:white;z-index:700;border-bottom:1px solid var(--border);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .cta-tabs::-webkit-scrollbar{display:none;}
+  .cta-tabs-inner{display:flex;padding:0 16px;gap:8px;min-width:max-content;}
+  .cta-tab{padding:14px 18px;font-weight:800;font-size:0.85rem;white-space:nowrap;border:none;background:transparent;color:var(--gray);border-bottom:3px solid transparent;cursor:pointer;transition:all 0.2s;}
+  .cta-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+  .cta-tab i{margin-right:6px;font-size:0.9rem;}
+
+  .content-scroll{flex:1;padding:0 0 100px;overscroll-behavior:contain;background:var(--gray-light);}
+  
+  /* Hero - Uswitch comparison style */
+  .hero-area{background:white;padding:28px 20px 24px;text-align:center;}
+  .hero-area h1{font-size:2.4rem;font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:12px;color:var(--text);}
+  .hero-area h1 span{color:var(--primary);}
+  .hero-sub{font-size:1rem;color:var(--gray);margin-bottom:20px;font-weight:600;}
+  
+  /* Quick Book Widget - Uswitch style */
+  .quick-book{background:var(--primary-light);border-radius:20px;padding:18px;margin:0 20px 20px;border:2px solid var(--primary);}
+  .quick-book-title{font-size:1.1rem;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .quick-book-title i{color:var(--primary);}
+  .device-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:12px;scrollbar-width:none;}
+  .device-pills::-webkit-scrollbar{display:none;}
+  .device-pill{background:white;border:2px solid var(--border);border-radius:60px;padding:10px 18px;font-weight:800;font-size:0.9rem;white-space:nowrap;cursor:pointer;transition:all 0.2s;}
+  .device-pill.active{background:var(--primary);color:white;border-color:var(--primary);}
+  .book-btn{background:var(--accent);color:white;border:none;border-radius:14px;padding:16px;width:100%;font-weight:900;font-size:1.1rem;cursor:pointer;box-shadow:0 8px 20px rgba(0,212,170,0.3);}
+
+  /* Trust Strip - Uswitch style */
+  .trust-strip{background:white;padding:20px;display:flex;justify-content:space-around;text-align:center;border-bottom:1px solid var(--border);}
+  .trust-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .trust-item i{font-size:1.6rem;color:var(--primary);}
+  .trust-item span{font-size:0.75rem;font-weight:800;color:var(--text);}
+  .trust-item small{font-size:0.65rem;color:var(--gray);font-weight:600;}
+
+  /* Section Styles */
+  .section{padding:24px 20px;}
+  .section-white{background:white;margin-bottom:12px;}
+  .section-header{font-size:1.4rem;font-weight:900;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+  .section-header span{color:var(--primary);}
+  .view-all{font-size:0.85rem;font-weight:700;color:var(--primary);text-decoration:none;}
+
+  /* Repair Cards - Uswitch comparison cards */
+  .repair-grid{display:flex;flex-direction:column;gap:12px;}
+  .repair-card{background:white;border:2px solid var(--border);border-radius:16px;padding:16px;position:relative;transition:all 0.2s;}
+  .repair-card.featured{border-color:var(--accent);box-shadow:0 8px 24px rgba(0,212,170,0.15);}
+  .repair-badge{position:absolute;top:-10px;right:16px;background:var(--accent);color:white;font-size:0.7rem;font-weight:900;padding:4px 12px;border-radius:60px;text-transform:uppercase;}
+  .repair-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;}
+  .repair-name{font-size:1.1rem;font-weight:900;}
+  .repair-time{font-size:0.75rem;font-weight:800;color:var(--accent);background:rgba(0,212,170,0.1);padding:4px 10px;border-radius:60px;}
+  .repair-price{font-size:1.8rem;font-weight:900;color:var(--primary);margin:8px 0;}
+  .repair-price small{font-size:0.9rem;color:var(--gray);font-weight:600;}
+  .repair-features{margin:12px 0;}
+  .repair-feature{display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:600;margin:6px 0;color:var(--gray);}
+  .repair-feature i{color:var(--accent);font-size:0.8rem;}
+  .repair-cta{background:var(--primary);color:white;border:none;border-radius:12px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;}
+  .repair-card.featured .repair-cta{background:var(--accent);}
+
+  /* Price List Table */
+  .price-table{background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+  .price-row{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border);}
+  .price-row:last-child{border-bottom:none;}
+  .price-service{font-weight:700;font-size:0.95rem;}
+  .price-device{font-size:0.75rem;color:var(--gray);margin-top:2px;}
+  .price-amount{font-weight:900;font-size:1.1rem;color:var(--primary);text-align:right;}
+  .price-amount span{font-size:0.7rem;color:var(--gray);display:block;font-weight:600;}
+
+  /* Reviews - Uswitch style */
+  .review-card{background:var(--gray-light);border-radius:16px;padding:16px;margin-bottom:12px;}
+  .review-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .review-avatar{width:44px;height:44px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1.1rem;}
+  .review-name{font-weight:800;font-size:0.95rem;}
+  .review-stars{color:#FFB800;font-size:0.85rem;}
+  .review-text{font-size:0.9rem;line-height:1.5;color:var(--text);font-weight:500;}
+  .review-date{font-size:0.7rem;color:var(--gray);margin-top:8px;}
+
+  /* Locations */
+  .location-card{background:white;border-radius:16px;padding:16px;border:2px solid var(--border);margin-bottom:12px;}
+  .location-card.active{border-color:var(--accent);}
+  .location-name{font-size:1.1rem;font-weight:900;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .location-name i{color:var(--accent);}
+  .location-addr{font-size:0.85rem;color:var(--gray);margin-bottom:10px;line-height:1.4;}
+  .location-meta{display:flex;gap:16px;font-size:0.8rem;font-weight:700;}
+  .location-meta i{color:var(--primary);margin-right:4px;}
+
+  /* Dock - kept your style */
+  .app-dock{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);height:70px;display:flex;justify-content:space-around;align-items:center;box-shadow:0 -5px 20px rgba(0,0,0,0.08);z-index:1000;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid var(--border);width:100%;}
   .dock-btn{display:flex;flex-direction:column;align-items:center;color:#A0A0A0;text-decoration:none;gap:4px;cursor:pointer;background:none;border:none;flex:1;padding:8px 0;}
   .dock-btn.active{color:var(--primary);}
   .dock-btn i{font-size:1.4rem;}
   .dock-btn span{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
-  .dock-center{width:60px;height:60px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin-top:-32px;border:4px solid var(--primary-light);box-shadow:0 8px 20px rgba(255,107,0,0.35);cursor:pointer;transition:transform 0.2s;}
+  .dock-center{width:60px;height:60px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin-top:-32px;border:4px solid var(--gray-light);box-shadow:0 8px 20px rgba(0,212,170,0.35);cursor:pointer;transition:transform 0.2s;}
   .dock-center:hover{transform:scale(1.05);}
 
-  /* ── AUDIT RESULTS MOCKUP ── */
-  #auditResultsContainer{display:none;margin:20px 0 40px;}
-  #auditResultsContainer .res-card{background:white;border-radius:28px;padding:28px;border:1px solid var(--border);box-shadow:0 12px 32px rgba(0,0,0,0.06);}
-  .res-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid #f0ece6;}
-  .res-business h2{font-size:1.3rem;font-weight:900;color:#1a1a1a;}
-  .res-business p{font-size:0.8rem;color:#888;}
-  .res-business .contact{font-size:0.75rem;color:#888;margin-top:4px;}
-  .res-business .contact i{margin-right:4px;color:var(--primary);}
-  .res-score{text-align:center;}
-  .res-score .num{font-size:2.8rem;font-weight:900;line-height:1;}
-  .res-score .label{font-size:0.65rem;color:#888;font-weight:700;letter-spacing:1px;}
-  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin:16px 0;background:#f9f5f0;padding:16px;border-radius:16px;}
-  .res-grid .item{text-align:center;}
-  .res-grid .item .val{font-weight:900;font-size:1.1rem;color:#1a1a1a;}
-  .res-grid .item .lbl{font-size:0.6rem;color:#888;text-transform:uppercase;letter-spacing:0.5px;}
-  .score-bar-wrap{margin:16px 0;padding:12px 16px;background:#f5f0ea;border-radius:12px;}
-  .score-bar-wrap .bar-header{display:flex;justify-content:space-between;font-weight:700;font-size:0.8rem;margin-bottom:6px;}
-  .score-bar-wrap .bar-header .health{color:var(--primary);}
-  .score-bar-wrap .bar-track{height:10px;background:#e8e0d8;border-radius:60px;overflow:hidden;}
-  .score-bar-wrap .bar-track .bar-fill{height:100%;background:var(--primary);border-radius:60px;}
-  .res-issues{margin:16px 0;}
-  .res-issue{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f5ece4;font-size:0.85rem;font-weight:600;}
-  .res-issue i{width:20px;text-align:center;font-size:0.9rem;}
-  .res-issue .icon-danger{color:#dc2626;}
-  .res-issue .icon-warn{color:#f59e0b;}
-  .res-issue .icon-success{color:#22c55e;}
-  .res-plan-box{background:linear-gradient(135deg,#FFF9F5 0%,#FFEFE5 100%);border-radius:20px;padding:20px;margin:16px 0;border:2px solid var(--primary);}
-  .res-plan-box h3{font-size:1.1rem;font-weight:900;}
-  .res-plan-box .price{font-size:1.8rem;font-weight:900;color:var(--primary);}
-  .res-plan-box .price small{font-size:0.85rem;font-weight:500;color:#888;}
-  .res-plan-box ul{list-style:none;margin:12px 0;}
-  .res-plan-box ul li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.85rem;font-weight:600;}
-  .res-plan-box ul li i{color:#22c55e;width:18px;}
-  .btn-pay{background:var(--primary);color:white;border:none;border-radius:60px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;transition:0.2s;}
-  .btn-pay:hover{background:#E56000;transform:scale(1.01);}
-  .res-view-link{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid #f0ece6;}
-  .res-view-link a{color:var(--primary);font-weight:700;text-decoration:none;font-size:0.85rem;transition:0.2s;}
-  .res-view-link a:hover{text-decoration:underline;}
-  .res-view-link p{font-size:0.65rem;color:#999;margin-top:4px;}
-  .loading-spinner{text-align:center;padding:40px 0;}
-  .loading-spinner .spinner{width:48px;height:48px;border:5px solid #f0e8e0;border-top-color:var(--primary);border-radius:50%;display:inline-block;animation:spin 1s linear infinite;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .loading-spinner p{margin-top:12px;color:#888;font-weight:600;}
-  .loading-spinner .sub{font-size:0.8rem;color:#aaa;margin-top:4px;}
-</style>
+  /* Footer */
+  footer{margin-top:0;padding:32px 20px 100px;background:white;text-align:center;border-top:1px solid var(--border);}
+  .footer-cta{background:var(--primary);color:white;border-radius:16px;padding:24px;margin-bottom:24px;}
+  .footer-cta h3{font-size:1.3rem;font-weight:900;margin-bottom:8px;}
+  .footer-cta p{font-size:0.9rem;margin-bottom:16px;opacity:0.9;}
+  .footer-btn{background:white;color:var(--primary);border:none;border-radius:12px;padding:14px 32px;font-weight:900;font-size:1rem;cursor:pointer;}
+  .copyright{font-weight:600;font-size:0.85rem;color:var(--gray);}
+
+  /* Hide sections by default */
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  </style>
 </head>
 <body>
 
-<div id="app-loader"><div class="loader-content"><div class="layer-1">VIBZ<span>.</span></div><div class="layer-2">The Vibe-Coding</div><div class="layer-3">Web Design & Marketing Agency.</div></div></div>
-<div id="app-menu-layer"><div class="menu-header"><div class="app-logo">VIBZ<span>.</span></div><div class="close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div></div><div class="menu-links"><a href="#" class="menu-item" onclick="toggleMenu()">Home</a><a href="https://www.vibz.co.uk/pages/about" class="menu-item">About</a><a href="https://www.vibz.co.uk/client-portal" class="menu-item">Portal</a><a href="https://www.vibz.co.uk/contact-us.html" class="menu-item">Support</a></div><div class="menu-footer">VIBZ COLLECTIVE © 2026</div></div>
-<div id="services-layer"><h2 id="services-title">Our Services</h2><div id="services-list"></div><div class="close-btn" onclick="toggleServices()"><i class="fa-solid fa-xmark"></i></div></div>
-<div id="category-layer"><h2 id="cat-title">Niche Selection</h2><div id="cat-list"></div><div class="close-btn" onclick="toggleCategories()"><i class="fa-solid fa-xmark"></i></div></div>
+<div id="app-loader">
+  <div class="loader-content">
+    <div class="layer-1">FixPro<span>.</span></div>
+    <div class="layer-2">Phone Repairs</div>
+    <div class="layer-3">Done Today.</div>
+  </div>
+</div>
+
+<div id="app-menu-layer">
+  <div class="menu-header">
+    <div class="app-logo">FixPro<span>.</span></div>
+    <div class="close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+  </div>
+  <div class="menu-links">
+    <a href="#" class="menu-item" onclick="toggleMenu();showTab('book')">Book Repair</a>
+    <a href="#" class="menu-item" onclick="toggleMenu();showTab('prices')">Price List</a>
+    <a href="#" class="menu-item" onclick="toggleMenu();showTab('locations')">Locations</a>
+    <a href="#" class="menu-item">Support</a>
+  </div>
+  <div class="menu-footer">FIXPRO © 2026</div>
+</div>
 
 <div id="app-container">
-  <header id="main-header"><div class="app-logo">VIBZ<span>.</span></div><a href="https://www.vibz.co.uk/client-portal" class="client-portal-btn"><i class="fa-regular fa-circle-user"></i><span>Client Portal</span></a></header>
-  <div class="header-spacer"></div>
+  <header>
+    <div class="app-logo">FixPro<span>.</span></div>
+    <a href="tel:02012345678" class="header-call"><i class="fa-solid fa-phone"></i></a>
+  </header>
+
+  <!-- Uswitch-style CTA Tabs -->
+  <div class="cta-tabs">
+    <div class="cta-tabs-inner">
+      <button class="cta-tab active" onclick="showTab('book')"><i class="fa-solid fa-screwdriver-wrench"></i>Book Repair</button>
+      <button class="cta-tab" onclick="showTab('track')"><i class="fa-solid fa-truck-fast"></i>Track Status</button>
+      <button class="cta-tab" onclick="showTab('prices')"><i class="fa-solid fa-tag"></i>Price List</button>
+      <button class="cta-tab" onclick="showTab('same-day')"><i class="fa-solid fa-bolt"></i>Same-Day</button>
+      <button class="cta-tab" onclick="showTab('reviews')"><i class="fa-solid fa-star"></i>Reviews</button>
+      <button class="cta-tab" onclick="showTab('locations')"><i class="fa-solid fa-location-dot"></i>Locations</button>
+      <button class="cta-tab" onclick="window.location.href='tel:02012345678'"><i class="fa-solid fa-phone"></i>Call Now</button>
+    </div>
+  </div>
+
   <main class="content-scroll">
-    <div class="hero-area">
-      <h1>We Fix Google<br>Business Profiles &amp; Local SEO</h1>
-      <div class="typewriter-container"><span id="typewriter"></span></div>
-      <div class="search-container">
-        <input type="text" id="mainSearch" placeholder="Paste your Google Maps URL or business name..." onkeypress="if(event.key==='Enter') runAuditMock()" />
-        <button class="search-icon-btn" onclick="runAuditMock()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    
+    <!-- TAB: BOOK REPAIR -->
+    <div id="book" class="tab-content active">
+      <div class="hero-area">
+        <h1>Phone Broken? <span>Fixed Today</span></h1>
+        <p class="hero-sub">iPhone, Samsung, Google & more. 6-month warranty.</p>
       </div>
-      <div class="search-hint"><i class="fa-regular fa-circle-question"></i> e.g. https://maps.google.com/?cid=123456789 or "Mike's Plumbing London"</div>
-      
-      <!-- Enable Notifications Button -->
-      <div style="text-align:center; margin:20px 0 40px;">
-        <button onclick="enablePush()" class="letsgo-btn">
-          <i class="fa-solid fa-bell"></i> Enable Notifications
-        </button>
-      </div>
-    </div>
 
-    <!-- AUDIT RESULTS CONTAINER -->
-    <div id="auditResultsContainer">
-      <div class="res-card" id="auditResultsCard"></div>
-    </div>
-
-    <!-- HOW IT WORKS -->
-    <div class="hiw-section"><span class="section-header">How It Works</span><div class="hiw-steps"><div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-content"><h3>Paste your Google Maps URL or business name</h3><p>Enter your Google Maps business link or just type your business name + city. We'll find your profile.</p></div></div><div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-content"><h3>Get your free Google Profile Score</h3><p>We instantly analyse your GBP and show you exactly where your profile is losing you customers.</p></div></div><div class="hiw-step"><div class="hiw-num">3</div><div class="hiw-content"><h3>Choose a plan that fits your budget</h3><p>We show you the right VIBZ package based on your score. Pay online — we start fixing immediately.</p></div></div><div class="hiw-step"><div class="hiw-num">4</div><div class="hiw-content"><h3>We do all the work — you get the calls</h3><p>Our team optimises your Google profile from top to bottom. Most clients see results within the first 30 days.</p></div></div></div></div>
-
-    <!-- LISTING EXAMPLE -->
-    <div class="listing-section" id="listingSection"><div class="listing-header"><span class="lst-badge">REAL EXAMPLE</span><h2>This is what a <span>winning listing</span> looks like</h2><p>Toggle between before and after to see how we transform a local phone repair business into a top-ranked profile.</p></div><div class="listing-toggle"><span class="toggle-label active" id="lblBefore">BEFORE</span><div class="toggle-track" id="listingToggle" onclick="toggleListing()"><div class="toggle-thumb"></div></div><span class="toggle-label" id="lblAfter">AFTER</span></div><div class="biz-card" id="listingBefore"><div class="biz-hero" style="background:#2a;"><div class="biz-hero-bg-circles"><span></span><span></span></div><div class="biz-hero-overlay"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;"><i class="fa-solid fa-image-slash" style="font-size:2rem;color:#555;"></i><span style="font-size:11px;color:#666;font-weight:700;">No photos uploaded</span></div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span style="font-size:9px;font-weight:800;color:#c62828;background:#fee2e2;padding:3px 8px;border-radius:60px;">⚠ UNVERIFIED</span></div><div class="biz-cat-row">Phone repair shop</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star off">★</span><span class="biz-star off">★</span></div><span class="biz-review-txt">3.2 · 4 reviews · No replies</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#c62828;font-weight:800;">Hours not listed</span></div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> <span style="color:#aaa;">No phone number added</span></div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> <span style="color:#aaa;">No website linked</span></div><div class="biz-actions"><div class="biz-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act" style="opacity:.35;"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act" style="opacity:.35;"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag">No description</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 posts</span><span class="biz-tag" style="color:#c62828;background:#fee2e2;">0 photo replies</span></div></div><div class="biz-card vibz-after" id="listingAfter" style="display:none;"><div class="biz-hero"><div class="biz-hero-bg-circles"><span></span><span></div><div class="biz-hero-overlay"></div><div class="biz-open-tag"><div class="biz-open-dot"></div>OPEN NOW</div><div class="biz-rating-badge"><span class="star">★</span> 4.9 · 47 reviews</div></div><div class="biz-body"><div class="biz-name-row"><span class="biz-name">Fix-It Phone Repairs</span><span class="biz-verified-chip"><i class="fa-solid fa-circle-check"></i> VERIFIED</span></div><div class="biz-cat-row"><span>Phone repair</span> · iPhone · Samsung · Screen fix · Battery</div><div class="biz-stars-row"><div class="biz-stars"><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span><span class="biz-star">★</span></div><span class="biz-review-txt">4.9 · 47 reviews · All replied ✓</span></div><div class="biz-info-row"><i class="fa-solid fa-location-dot"></i> 14 High Street, Slough, SL1 1DY</div><div class="biz-info-row"><i class="fa-regular fa-clock"></i> <span style="color:#22c55e;font-weight:800;">Open</span> · Mon–Sat 9am–6pm · Sun 10am–4pm</div><div class="biz-info-row"><i class="fa-solid fa-phone"></i> 01753 123 456</div><div class="biz-info-row"><i class="fa-solid fa-globe"></i> fixitphonerepairs.co.uk</div><div class="biz-actions"><div class="biz-act primary-act"><i class="fa-solid fa-phone"></i>Call</div><div class="biz-act primary-act"><i class="fa-solid fa-globe"></i>Website</div><div class="biz-act primary-act"><i class="fa-regular fa-message"></i>Message</div><div class="biz-act"><i class="fa-solid fa-location-dot"></i>Directions</div></div><div class="biz-tags"><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Same-day repairs</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">24 photos</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Weekly posts</span><span class="biz-tag" style="color:#2e7d32;background:#e8f5e9;">Top 3 on Maps</span></div></div><div class="vibz-powered">⚡ OPTIMISED BY VIBZ</div></div><p style="text-align:center;font-size:12px;color:#aaa;margin-top:16px;font-weight:600;">Toggle between states — this is what we deliver for every client</p></div>
-
-    <!-- ABA SECTION -->
-    <div class="aba-section"><div class="aba-header"><span class="aba-badge">BEFORE &amp; AFTER</span><h2>Watch how we transform a<br><span>phone repair shop on Google</span></h2><p>Each improvement happens automatically — see exactly what we fix and why it matters.</p></div><div class="aba-card-wrap" id="abaWrap"><div class="aba-pointer" id="abaPointer" style="top:60px;left:20px;opacity:0;">👉</div><div class="aba-card" id="abaCard"><div class="aba-status-bar before" id="abaStatusBar"><div class="aba-status-dot"></div><span id="abaStatusText">⚠ Before Optimisation</span></div><div class="aba-verified" id="abaVerified"><i class="fa-solid fa-circle-check"></i> VERIFIED BY VIBZ</div><div class="aba-biz-row"><div class="aba-biz-name">Fix-It Phone Repairs</div><div class="aba-biz-cat" id="abaCat">Phone repair shop</div></div><div class="aba-stars-row"><div class="aba-stars" id="abaStars"><span class="aba-star on">★</span><span class="aba-star on">★</span><span class="aba-star on">★</span><span class="aba-star off">★</span><span class="aba-star off">★</span></div><span class="aba-review-count" id="abaReviewCount">3.2 • 4 reviews</span></div><div class="aba-section-item bad" id="abaS1"><div class="aba-item-label">Profile Status</div><span class="aba-item-text">❌ Unverified — suppressed by Google</span><span class="aba-item-icon">🔒</span></div><div class="aba-section-item bad" id="abaS2"><div class="aba-item-label">Business Description</div><span class="aba-item-text">❌ No description — missing key search words</span></div><div class="aba-section-item bad" id="abaS3"><div class="aba-item-label">Photos & Media</div><span class="aba-item-text">❌ 0 photos — profile looks abandoned</span></div><div class="aba-section-item bad" id="abaS4"><div class="aba-item-label">Opening Hours</div><span class="aba-item-text">❌ Hours missing — customers assume closed</span></div><div class="aba-section-item bad" id="abaS5"><div class="aba-item-label">Google Posts</div><span class="aba-item-text">❌ Never posted — profile appears inactive</span></div><div class="aba-section-item bad" id="abaS6" style="margin-bottom:18px"><div class="aba-item-label">Review Responses</div><span class="aba-item-text">❌ 0 replies — looks unmanaged & untrustworthy</span></div><div class="aba-action-row" id="abaActions"><div class="aba-action-btn" id="abaAct1"><i class="fa-solid fa-phone"></i> Call</div><div class="aba-action-btn" id="abaAct2"><i class="fa-solid fa-location-dot"></i> Directions</div><div class="aba-action-btn" id="abaAct3" style="opacity:.35"><i class="fa-solid fa-globe"></i> Website</div><div class="aba-action-btn" id="abaAct4" style="opacity:.35"><i class="fa-regular fa-message"></i> Message</div></div></div><div class="aba-progress" id="abaDots"><div class="aba-dot active"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div><div class="aba-dot"></div></div><button class="aba-replay-btn" id="abaReplayBtn" onclick="runABA()">↺ Replay Animation</button></div></div>
-
-    <!-- TOGGLE BAR: FAQ / PRICING / GUARANTEE -->
-    <div class="toggle-bar-section">
-      <div class="toggle-bar-buttons">
-        <button class="toggle-bar-btn active" data-panel="faqPanel">FAQ</button>
-        <button class="toggle-bar-btn" data-panel="pricingPanel">Pricing</button>
-        <button class="toggle-bar-btn" data-panel="guaranteePanel">Guarantee</button>
-      </div>
-      <div class="toggle-panel-content">
-        <div id="faqPanel" class="toggle-pane active-pane">
-          <div class="faq-item"><div class="faq-question">How long does it take to see results? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">Most clients see improved rankings & calls within 30 days. Full optimisation takes 2–4 weeks.</div></div>
-          <div class="faq-item"><div class="faq-question">Do I need to give you access to my account? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">Only manager-level access — we never request full ownership. Secure & transparent.</div></div>
-          <div class="faq-item"><div class="faq-question">What if my profile gets suspended? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">We follow Google's policies strictly. If suspension occurs, we handle reinstatement for free.</div></div>
-          <div class="faq-item"><div class="faq-question">What does verification involve? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">We guide you through Google's video/postcard verification — done remotely with your cooperation.</div></div>
-          <div class="faq-item"><div class="faq-question">Can you help get more reviews? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">Yes, our system automates review requests via SMS/email while staying 100% compliant.</div></div>
-          <div class="faq-item"><div class="faq-question">Is there a contract or lock-in? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">No contracts. Monthly plans: cancel anytime. No penalties, no questions.</div></div>
+      <div class="quick-book">
+        <div class="quick-book-title"><i class="fa-solid fa-mobile-screen"></i> Select Your Device</div>
+        <div class="device-pills">
+          <div class="device-pill active">iPhone</div>
+          <div class="device-pill">Samsung</div>
+          <div class="device-pill">Google Pixel</div>
+          <div class="device-pill">iPad</div>
+          <div class="device-pill">Other</div>
         </div>
-        <div id="pricingPanel" class="toggle-pane">
-          <div class="pricing-grid">
-            <div class="pricing-card"><h3>Starter Fix</h3><div class="price">£149 <span>one-off</span></div><div><i class="fa-solid fa-broom"></i> Profile clean-up & quick wins</div><ul class="pricing-features"><li><i class="fa-solid fa-check"></i> Claimed & verified</li><li><i class="fa-solid fa-check"></i> All fields completed</li><li><i class="fa-solid fa-check"></i> Description + category</li><li><i class="fa-solid fa-check"></i> 10 branded photos</li></ul><button class="btn-pricing" onclick="runAuditMock()">Start Free Audit →</button></div>
-            <div class="pricing-card"><h3>Growth Plan</h3><div class="price">£97 <span>/month</span></div><div><i class="fa-solid fa-chart-line"></i> Ongoing optimisation + reviews</div><ul class="pricing-features"><li><i class="fa-solid fa-check"></i> Everything in Starter</li><li><i class="fa-solid fa-check"></i> 4 Google posts/month</li><li><i class="fa-solid fa-check"></i> Review generation system</li><li><i class="fa-solid fa-check"></i> Monthly report + replies</li></ul><button class="btn-pricing" onclick="runAuditMock()">Get Started →</button></div>
-            <div class="pricing-card"><h3>Dominate Plan</h3><div class="price">£197 <span>/month</span></div><div><i class="fa-solid fa-crown"></i> Full-service market domination</div><ul class="pricing-features"><li><i class="fa-solid fa-check"></i> Everything in Growth</li><li><i class="fa-solid fa-check"></i> 8 posts + offers/month</li><li><i class="fa-solid fa-check"></i> Competitor gap analysis</li><li><i class="fa-solid fa-check"></i> Priority WhatsApp support</li></ul><button class="btn-pricing" onclick="runAuditMock()">Get Started →</button></div>
+        <button class="book-btn" onclick="enablePush()"><i class="fa-solid fa-calendar-check"></i> Book Same-Day Repair</button>
+      </div>
+
+      <div class="trust-strip">
+        <div class="trust-item">
+          <i class="fa-solid fa-bolt"></i>
+          <span>1 Hour</span>
+          <small>Most repairs</small>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>6 Months</span>
+          <small>Warranty</small>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-star"></i>
+          <span>4.9/5</span>
+          <small>500+ reviews</small>
+        </div>
+      </div>
+
+      <div class="section section-white">
+        <div class="section-header">Popular Repairs <a href="#" class="view-all" onclick="showTab('prices')">View all</a></div>
+        <div class="repair-grid">
+          <div class="repair-card featured">
+            <div class="repair-badge">Most Popular</div>
+            <div class="repair-top">
+              <div class="repair-name">iPhone Screen Repair</div>
+              <div class="repair-time">45 mins</div>
+            </div>
+            <div class="repair-price">£59 <small>from</small></div>
+            <div class="repair-features">
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Genuine parts available</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> 6-month warranty</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Data stays safe</div>
+            </div>
+            <button class="repair-cta">Book Now</button>
+          </div>
+
+          <div class="repair-card">
+            <div class="repair-top">
+              <div class="repair-name">Battery Replacement</div>
+              <div class="repair-time">30 mins</div>
+            </div>
+            <div class="repair-price">£39 <small>from</small></div>
+            <div class="repair-features">
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> New battery health 100%</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> 6-month warranty</div>
+            </div>
+            <button class="repair-cta">Book Now</button>
+          </div>
+
+          <div class="repair-card">
+            <div class="repair-top">
+              <div class="repair-name">Water Damage Fix</div>
+              <div class="repair-time">2-4 hrs</div>
+            </div>
+            <div class="repair-price">£49 <small>diagnostic</small></div>
+            <div class="repair-features">
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> No fix, no fee</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Data recovery attempt</div>
+            </div>
+            <button class="repair-cta">Book Now</button>
           </div>
         </div>
-        <div id="guaranteePanel" class="toggle-pane">
-          <div class="guarantee-grid">
-            <div class="guarantee-card"><div class="g-icon"><i class="fa-solid fa-infinity"></i></div><div class="g-text"><h4>Free Until Fixed</h4><p>We optimise for free until every agreed deliverable is complete.</p></div></div>
-            <div class="guarantee-card"><div class="g-icon"><i class="fa-solid fa-shield-haltered"></i></div><div class="g-text"><h4>Zero Suspension Risk</h4><p>100% Google policy compliant. We handle reinstatement if ever needed.</p></div></div>
-            <div class="guarantee-card"><div class="g-icon"><i class="fa-regular fa-calendar-xmark"></i></div><div class="g-text"><h4>Cancel Anytime</h4><p>No contracts, no lock-ins. Monthly plans stop with one click.</p></div></div>
-            <div class="guarantee-card"><div class="g-icon"><i class="fa-solid fa-chart-simple"></i></div><div class="g-text"><h4>30-Day Check</h4><p>No meaningful progress? We review & adjust at no cost.</p></div></div>
+      </div>
+    </div>
+
+    <!-- TAB: TRACK STATUS -->
+    <div id="track" class="tab-content">
+      <div class="section section-white">
+        <div class="section-header">Track Your Repair <span>Status</span></div>
+        <div style="background:var(--primary-light);border-radius:16px;padding:20px;text-align:center;">
+          <i class="fa-solid fa-magnifying-glass" style="font-size:3rem;color:var(--primary);margin-bottom:12px;"></i>
+          <p style="font-weight:700;margin-bottom:12px;">Enter your repair ID</p>
+          <input type="text" placeholder="e.g. FPR-2026-001" style="width:100%;padding:14px;border:2px solid var(--border);border-radius:12px;font-size:1rem;font-weight:600;text-align:center;margin-bottom:12px;">
+          <button class="book-btn">Check Status</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PRICE LIST -->
+    <div id="prices" class="tab-content">
+      <div class="section section-white">
+        <div class="section-header">Transparent <span>Pricing</span></div>
+        <div class="price-table">
+          <div class="price-row">
+            <div>
+              <div class="price-service">iPhone 14 Screen</div>
+              <div class="price-device">45 min repair</div>
+            </div>
+            <div class="price-amount">£89<span>inc. parts</span></div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-service">iPhone 13 Screen</div>
+              <div class="price-device">45 min repair</div>
+            </div>
+            <div class="price-amount">£79<span>inc. parts</span></div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-service">Samsung S23 Screen</div>
+              <div class="price-device">60 min repair</div>
+            </div>
+            <div class="price-amount">£99<span>inc. parts</span></div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-service">Battery Replacement</div>
+              <div class="price-device">All models</div>
+            </div>
+            <div class="price-amount">£39<span>from</span></div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-service">Charging Port Fix</div>
+              <div class="price-device">1-2 hour repair</div>
+            </div>
+            <div class="price-amount">£49<span>from</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <footer><div class="footer-inner"><div class="subscription-section"><div class="subscribe-heading"><h2>SUBSCRIBE</h2><div class="arrow-pointer"><i class="fa-solid fa-arrow-right"></i></div></div><div class="subscribe-row"><div class="email-wrapper"><input type="email" class="email-field" id="subscribeEmail" placeholder="Enter your email..."></div><button class="letsgo-btn" onclick="alert('Thanks for subscribing!')"><span>Let's Go</span><i class="fa-solid fa-arrow-right"></i></button></div></div><div class="legal-help-row"><div class="dropdown-container"><button class="dropdown-btn" onclick="toggleDropdown('legalMenu')"><i class="fa-solid fa-scale-balanced"></i> Legal <i class="fa-solid fa-chevron-down"></i></button><div class="dropdown-menu" id="legalMenu"><a href="#"><i class="fa-regular fa-lock"></i> Privacy Policy</a><a href="#"><i class="fa-regular fa-file-contract"></i> Terms & Conditions</a></div></div><div class="dropdown-container"><button class="dropdown-btn" onclick="toggleDropdown('helpMenu')"><i class="fa-regular fa-circle-question"></i> Help <i class="fa-solid fa-chevron-down"></i></button><div class="dropdown-menu" id="helpMenu"><a href="#"><i class="fa-regular fa-question-circle"></i> FAQ</a><a href="#"><i class="fa-regular fa-envelope"></i> Contact Us</a></div></div></div><div class="social-icons"><a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X"></a><a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"></a><a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a></div><div class="copyright"><p>&copy; 2026 VIBZ. All rights reserved. | London, UK</p></div></div></footer>
+    <!-- TAB: SAME-DAY -->
+    <div id="same-day" class="tab-content">
+      <div class="section section-white">
+        <div class="section-header">Same-Day <span>Repairs</span></div>
+        <div class="repair-grid">
+          <div class="repair-card featured">
+            <div class="repair-badge"><i class="fa-solid fa-bolt"></i> Fast</div>
+            <div class="repair-top">
+              <div class="repair-name">Walk-In Available</div>
+              <div class="repair-time">No booking needed</div>
+            </div>
+            <div class="repair-features">
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Mon-Sat 9am-6pm</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Average wait 15 mins</div>
+              <div class="repair-feature"><i class="fa-solid fa-check"></i> Free diagnostic</div>
+            </div>
+            <button class="repair-cta" onclick="showTab('locations')">Find Nearest Store</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: REVIEWS -->
+    <div id="reviews" class="tab-content">
+      <div class="section section-white">
+        <div class="section-header">Customer <span>Reviews</span></div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">JS</div>
+            <div>
+              <div class="review-name">James S.</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="review-text">Cracked my iPhone 14 screen on Monday. Walked in, fixed in 40 mins, good as new. Staff were brilliant. Highly recommend!</div>
+          <div class="review-date">2 days ago · Google</div>
+        </div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">AM</div>
+            <div>
+              <div class="review-name">Aisha M.</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="review-text">Battery was dying by 2pm. Got it replaced while I had coffee next door. Phone lasts 2 days now. Worth every penny.</div>
+          <div class="review-date">1 week ago · Google</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: LOCATIONS -->
+    <div id="locations" class="tab-content">
+      <div class="section section-white">
+        <div class="section-header">Our <span>Stores</span></div>
+        <div class="location-card active">
+          <div class="location-name"><i class="fa-solid fa-location-dot"></i> FixPro Camden</div>
+          <div class="location-addr">124 Camden High St, London NW1 0NE<br>Opposite Camden Town Station</div>
+          <div class="location-meta">
+            <span><i class="fa-solid fa-clock"></i> Open Now</span>
+            <span><i class="fa-solid fa-phone"></i> 020 7123 4567</span>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-name"><i class="fa-solid fa-location-dot"></i> FixPro Shoreditch</div>
+          <div class="location-addr">45 Brick Lane, London E1 6PU<br>Near Spitalfields Market</div>
+          <div class="location-meta">
+            <span><i class="fa-solid fa-clock"></i> Closes 6pm</span>
+            <span><i class="fa-solid fa-phone"></i> 020 7987 6543</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
-  <nav class="app-dock"><a href="#" class="dock-btn active"><i class="fa-solid fa-house-chimney"></i><span>HOME</span></a><div class="dock-btn" onclick="openServices()"><i class="fa-solid fa-bars-progress"></i><span>SERVICES</span></div><div class="dock-center" onclick="runAuditMock()" id="dockCenter"><i class="fa-solid fa-magnifying-glass"></i></div><a href="https://www.vibz.co.uk/client-portal" class="dock-btn"><i class="fa-solid fa-briefcase"></i><span>PORTAL</span></a><div class="dock-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i><span>MENU</span></div></nav>
+
+  <nav class="app-dock">
+    <a href="#" class="dock-btn active" onclick="showTab('book')"><i class="fa-solid fa-house-chimney"></i><span>HOME</span></a>
+    <div class="dock-btn" onclick="showTab('prices')"><i class="fa-solid fa-tag"></i><span>PRICES</span></div>
+    <div class="dock-center" onclick="window.location.href='tel:02012345678'"><i class="fa-solid fa-phone"></i></div>
+    <a href="#" class="dock-btn" onclick="showTab('track')"><i class="fa-solid fa-truck-fast"></i><span>TRACK</span></a>
+    <div class="dock-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i><span>MENU</span></div>
+  </nav>
 </div>
 
 <script>
-// ── OneSignal Permission Function - FIXED ──
+// ── OneSignal Permission ──
 async function enablePush() {
-  console.log('Button clicked - checking OneSignal');
-  
   if (typeof OneSignal === 'undefined') {
-    alert('OneSignal not loaded yet. Wait 2 seconds and try again, or check your internet.');
+    alert('OneSignal not loaded. Install app to home screen first.');
     return;
   }
-  
   try {
     const permission = await OneSignal.Notifications.permission;
-    console.log('Current permission:', permission);
-    
     if (permission === true) {
-      alert('You\'re already subscribed! Check iPhone Settings > Notifications > VIBZ');
+      alert('Already subscribed!');
       return;
     }
-    
-    if (permission === false) {
-      alert('You blocked notifications. Go to iPhone Settings > VIBZ > Notifications > Allow Notifications');
-      return;
-    }
-    
-    console.log('Requesting permission...');
     await OneSignal.Notifications.requestPermission();
-    
-    const newPermission = await OneSignal.Notifications.permission;
-    if (newPermission) {
-      alert('Notifications enabled! You\'ll get updates from VIBZ.');
-    } else {
-      alert('Permission denied or dismissed. Try again from Home Screen PWA.');
-    }
-    
+    alert('Notifications enabled! Get repair updates instantly.');
   } catch(e) {
     console.error('OneSignal error:', e);
-    alert('Error: ' + e.message + '\n\nCheck: 1) App is installed to home screen 2) iOS 16.4+ 3) App ID correct');
+    alert('Error: ' + e.message);
   }
 }
 
-// ── TYPEWRITER ──
-const words = ["More Calls","More Customers","More Reviews","More Visibility","More Traffic"];
-let tIdx=0,tChar=0,tDel=false,tWait=false;
-const tEl=document.getElementById('typewriter');
-setInterval(()=>{
-  if(!tEl||tWait) return;
-  const w=words;
-  if(!tDel){
-    tEl.textContent=w.substring(0,tChar+1);
-    tChar++;
-    if(tChar===w.length){ tWait=true; setTimeout(()=>{ tDel=true; tWait=false; },1800); }
-  } else {
-    tEl.textContent=w.substring(0,tChar-1);
-    tChar--;
-    if(tChar===0){ tDel=false; tIdx=(tIdx+1)%words.length; tWait=true; setTimeout(()=>{ tWait=false; },300); }
-  }
-},80);
+// ── TAB SWITCHING ──
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cta-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('.cta-tab').forEach(t => {
+    if (t.getAttribute('onclick') && t.getAttribute('onclick').includes(tabId)) {
+      t.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
 
-// ── TAB TOGGLES ──
-document.querySelectorAll('.toggle-bar-btn').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    const panelId=this.getAttribute('data-panel');
-    document.querySelectorAll('.toggle-bar-btn').forEach(b=>b.classList.remove('active'));
+// ── Device Pill Selection ──
+document.querySelectorAll('.device-pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.device-pill').forEach(p => p.classList.remove('active'));
     this.classList.add('active');
-    document.querySelectorAll('.toggle-pane').forEach(pane=>pane.classList.remove('active-pane'));
-    document.getElementById(panelId).classList.add('active-pane');
-  });
-});
-document.querySelectorAll('.faq-question').forEach(q=>{
-  q.addEventListener('click',function(){
-    const ans=this.nextElementSibling;
-    ans.classList.toggle('show');
-    const icon=this.querySelector('i');
-    if(icon) icon.style.transform=ans.classList.contains('show')?'rotate(180deg)':'rotate(0deg)';
   });
 });
 
-// ── AUDIT MOCKUP ──
-function runAuditMock() {
-  const input = document.getElementById('mainSearch').value.trim();
-  if (!input) {
-    alert('Please paste your Google Maps URL or enter your business name.');
-    return;
-  }
-
-  const container = document.getElementById('auditResultsContainer');
-  const card = document.getElementById('auditResultsCard');
-
-  container.style.display = 'block';
-  card.innerHTML = `
-    <div class="loading-spinner">
-      <div class="spinner"></div>
-      <p>🔍 Scanning Google Business Profile...</p>
-      <p class="sub">Checking reviews, photos, hours, website and more</p>
-    </div>
-  `;
-
-  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  const delay = 1800 + Math.random() * 700;
-  setTimeout(() => {
-    const mockData = generateMockAudit(input);
-    renderAuditResults(mockData);
-  }, delay);
+// ── MENU ──
+function toggleMenu(){
+  document.getElementById('app-menu-layer').classList.toggle('active');
 }
-
-function generateMockAudit(input) {
-  const hash = simpleHash(input);
-  const businessName = extractBusinessName(input);
-
-  const reviewCount = 4 + (hash % 96);
-  const rating = 3.0 + ((hash % 20) / 20);
-  const photoCount = 0 + (hash % 25);
-  const isVerified = hash % 3!== 0;
-  const hasWebsite = hash % 4!== 0;
-  const hasHours = hash % 5!== 0;
-  const hasReplies = reviewCount > 10 && hash % 3!== 0;
-  const hasPhone = hash % 6!== 0;
-
-  let score = 60;
-  if (isVerified) score += 15; else score -= 15;
-  if (rating >= 4.5) score += 15; else if (rating >= 4.0) score += 5; else score -= 10;
-  if (reviewCount >= 50) score += 15; else if (reviewCount >= 10) score += 5; else score -= 15;
-  if (hasWebsite) score += 10; else score -= 10;
-  if (hasHours) score += 10; else score -= 10;
-  if (photoCount >= 10) score += 10; else if (photoCount > 0) score += 2; else score -= 10;
-  if (hasReplies) score += 10; else if (reviewCount > 0) score -= 10;
-  if (hasPhone) score += 5; else score -= 5;
-  score = Math.min(100, Math.max(0, Math.round(score)));
-
-  const issues = [];
-  if (!isVerified) issues.push({ text: 'Profile not verified — hidden from search results.', icon: 'fa-circle-xmark', cls: 'icon-danger' });
-  if (reviewCount < 10) issues.push({ text: `Only ${reviewCount} reviews — too few to rank competitively. Aim for 50+.`, icon: 'fa-triangle-exclamation', cls: 'icon-warn' });
-  if (photoCount < 5) issues.push({ text: `Only ${photoCount} photos — businesses with 50+ photos get 3× more engagement.`, icon: 'fa-triangle-exclamation', cls: 'icon-warn' });
-  if (!hasHours) issues.push({ text: 'Opening hours missing — customers assume you are closed.', icon: 'fa-circle-xmark', cls: 'icon-danger' });
-  if (!hasWebsite) issues.push({ text: 'No website linked — lost traffic and credibility.', icon: 'fa-circle-xmark', cls: 'icon-danger' });
-  if (reviewCount > 0 &&!hasReplies) issues.push({ text: 'Not replying to reviews — hurts trust and ranking.', icon: 'fa-circle-xmark', cls: 'icon-danger' });
-  if (!hasPhone) issues.push({ text: 'No phone number — customers cannot call you.', icon: 'fa-circle-xmark', cls: 'icon-danger' });
-
-  if (issues.length === 0) {
-    issues.push({ text: 'Your profile looks great! Keep it optimised with our Growth Plan.', icon: 'fa-circle-check', cls: 'icon-success' });
-  }
-
-  let planName, planPrice, planFeatures;
-  if (score < 40) {
-    planName = 'Starter Fix';
-    planPrice = '£149 one-off';
-    planFeatures = ['Claimed & verified', 'All fields completed', 'Description + category', '10 branded photos'];
-  } else if (score < 70) {
-    planName = 'Growth Plan';
-    planPrice = '£97 /month';
-    planFeatures = ['Full profile optimisation', 'Review generation system', '4 Google posts/month', 'Monthly report + replies'];
-  } else {
-    planName = 'Dominate Plan';
-    planPrice = '£197 /month';
-    planFeatures = ['Everything in Growth', '8 posts + offers/month', 'Competitor gap analysis', 'Priority WhatsApp support'];
-  }
-
-  const mapUrl = `https://www.google.com/maps/search/${encodeURIComponent(businessName)}`;
-
-  return {
-    businessName: businessName,
-    address: '14 High Street, London',
-    phone: hasPhone? '01753 123 456' : 'Not added',
-    website: hasWebsite? 'yourbusiness.co.uk' : 'Not linked',
-    rating: rating.toFixed(1),
-    reviewCount: reviewCount,
-    photoCount: photoCount,
-    hasHours: hasHours,
-    hasWebsite: hasWebsite,
-    hasReplies: hasReplies,
-    hasPhone: hasPhone,
-    isVerified: isVerified,
-    score: score,
-    issues: issues,
-    planName: planName,
-    planPrice: planPrice,
-    planFeatures: planFeatures,
-    mapUrl: mapUrl
-  };
-}
-
-function extractBusinessName(input) {
-  if (input.includes('google.com') || input.includes('maps')) {
-    const match = input.match(/place\/([^\/]+)/);
-    if (match) return decodeURIComponent(match[1].replace(/\+/g, ' '));
-    return 'Your Business';
-  }
-  return input.length > 30? input.substring(0, 30) + '...' : input;
-}
-
-function simpleHash(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash);
-}
-
-function renderAuditResults(data) {
-  const card = document.getElementById('auditResultsCard');
-
-  const issuesHtml = data.issues.map(issue => `
-    <div class="res-issue">
-      <i class="fa-solid ${issue.icon} ${issue.cls}"></i>
-      <span>${issue.text}</span>
-    </div>
-  `).join('');
-
-  const scoreColor = data.score < 40? '#dc2626' : (data.score < 70? '#f59e0b' : '#22c55e');
-
-  card.innerHTML = `
-    <div class="res-header">
-      <div class="res-business">
-        <h2>${data.businessName}</h2>
-        <p><i class="fa-regular fa-location-dot"></i> ${data.address}</p>
-        <div class="contact">
-          <i class="fa-solid fa-phone"></i> ${data.phone} &nbsp;·&nbsp; <i class="fa-regular fa-globe"></i> ${data.website}
-        </div>
-      </div>
-      <div class="res-score">
-        <div class="num" style="color:${scoreColor};">${data.score}</div>
-        <div class="label">HEALTH SCORE</div>
-      </div>
-    </div>
-
-    <div class="res-grid">
-      <div class="item"><div class="val">${data.isVerified? '✅' : '❌'}</div><div class="lbl">Verified</div></div>
-      <div class="item"><div class="val">${data.rating} ★</div><div class="lbl">Rating</div></div>
-      <div class="item"><div class="val">${data.reviewCount}</div><div class="lbl">Reviews</div></div>
-      <div class="item"><div class="val">${data.photoCount}</div><div class="lbl">Photos</div></div>
-      <div class="item"><div class="val">${data.hasHours? '✅' : '❌'}</div><div class="lbl">Hours</div></div>
-      <div class="item"><div class="val">${data.hasWebsite? '✅' : '❌'}</div><div class="lbl">Website</div></div>
-    </div>
-
-    <div class="score-bar-wrap">
-      <div class="bar-header">
-        <span>Profile Health</span>
-        <span class="health">${data.score}%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill" style="width:${data.score}%;"></div>
-      </div>
-    </div>
-
-    <div class="res-issues">
-      ${issuesHtml}
-    </div>
-
-    <div class="res-plan-box">
-      <h3>🎯 Recommended Plan</h3>
-      <div class="price">${data.planPrice}</div>
-      <ul>
-        ${data.planFeatures.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
-        <li><i class="fa-solid fa-check"></i> 30-day money-back guarantee</li>
-        <li><i class="fa-solid fa-check"></i> Cancel anytime — no contracts</li>
-      </ul>
-      <button class="btn-pay" onclick="alert('✅ Payment page would open here.\\n\\nPlan: ${data.planName}\\nPrice: ${data.planPrice}\\n\\nIn production, this would redirect to Stripe.')">
-        💳 Pay & Start Fixing →
-      </button>
-    </div>
-
-    <div class="res-view-link">
-      <a href="${data.mapUrl}" target="_blank">
-        <i class="fa-regular fa-location-dot"></i> View your actual Google Business Profile →
-      </a>
-      <p>Opens in a new tab — see what customers see</p>
-    </div>
-  `;
-}
-
-// ── LISTING TOGGLE ──
-let listingState=false; function toggleListing(){ listingState=!listingState; const track=document.getElementById('listingToggle'), before=document.getElementById('listingBefore'), after=document.getElementById('listingAfter'), lblB=document.getElementById('lblBefore'), lblA=document.getElementById('lblAfter'); if(listingState){ track.classList.add('on'); before.style.display='none'; after.style.display='block'; lblB.classList.remove('active'); lblA.classList.add('active'); after.style.opacity='0'; after.style.transform='translateY(12px)'; requestAnimationFrame(()=>{ after.style.transition='opacity.4s ease, transform.4s ease'; after.style.opacity='1'; after.style.transform='translateY(0)'; }); } else { track.classList.remove('on'); after.style.display='none'; before.style.display='block'; lblB.classList.add('active'); lblA.classList.remove('active'); before.style.opacity='0'; before.style.transform='translateY(12px)'; requestAnimationFrame(()=>{ before.style.transition='opacity.4s ease, transform.4s ease'; before.style.opacity='1'; before.style.transform='translateY(0)'; }); } }
-
-// ── ABA ANIMATION ──
-async function sleep(ms){return new Promise(r=>setTimeout(r,ms));} function movePointer(t,l){const p=document.getElementById("abaPointer"); p.style.top=t+"px"; p.style.left=l+"%"; p.style.opacity="1";} function hidePointer(){document.getElementById("abaPointer").style.opacity="0";} function setDot(i){document.querySelectorAll("#abaDots.aba-dot").forEach((d,j)=>{d.classList.toggle("active",j===i);});} function goodSection(el,lbl,txt){el.className="aba-section-item transforming"; setTimeout(()=>{el.className="aba-section-item good"; el.innerHTML='<div class="aba-item-label">'+lbl+'</div><span class="aba-item-text">'+txt+'</span>';},500);}
-async function runABA(){ if(window._abaRunning)return; window._abaRunning=true; var card=document.getElementById("abaCard"), bar=document.getElementById("abaStatusBar"); card.className="aba-card"; bar.className="aba-status-bar before"; document.getElementById("abaStatusText").textContent="⚠ Before Optimisation"; document.getElementById("abaVerified").className="aba-verified"; document.getElementById("abaCat").textContent="Phone repair shop"; document.getElementById("abaReviewCount").textContent="3.2 • 4 reviews"; var stars=document.querySelectorAll("#abaStars.aba-star"); stars[0].className="aba-star on"; stars[1].className="aba-star on"; stars[2].className="aba-star on"; stars[3].className="aba-star off"; stars[4].className="aba-star off"; ["abaS1","abaS2","abaS3","abaS4","abaS5","abaS6"].forEach(id=>{document.getElementById(id).className="aba-section-item bad";}); document.getElementById("abaS1").innerHTML='<div class="aba-item-label">Profile Status</div><span class="aba-item-text">❌ Unverified — suppressed by Google</span><span class="aba-item-icon">🔒</span>'; document.getElementById("abaS2").innerHTML='<div class="aba-item-label">Business Description</div><span class="aba-item-text">❌ No description — missing key search words</span>'; document.getElementById("abaS3").innerHTML='<div class="aba-item-label">Photos & Media</div><span class="aba-item-text">❌ 0 photos — profile looks abandoned</span>'; document.getElementById("abaS4").innerHTML='<div class="aba-item-label">Opening Hours</div><span class="aba-item-text">❌ Hours missing — customers assume closed</span>'; document.getElementById("abaS5").innerHTML='<div class="aba-item-label">Google Posts</div><span class="aba-item-text">❌ Never posted — profile appears inactive</span>'; document.getElementById("abaS6").innerHTML='<div class="aba-item-label">Review Responses</div><span class="aba-item-text">❌ 0 replies — looks unmanaged & untrustworthy</span>'; ["abaAct1","abaAct2","abaAct3","abaAct4"].forEach((id,i)=>{var el=document.getElementById(id); el.className="aba-action-btn"; el.style.opacity=i<2?"1":"0.35";}); document.getElementById("abaReplayBtn").className="aba-replay-btn"; hidePointer(); setDot(0); await sleep(1200); setDot(1); movePointer(84,8); await sleep(900); document.getElementById("abaVerified").className="aba-verified show"; goodSection(document.getElementById("abaS1"),"Profile Status","✅ Verified by Google — trusted & boosted"); document.getElementById("abaStatusText").textContent="🔧 Optimising..."; await sleep(1400); setDot(2); movePointer(150,8); await sleep(800); goodSection(document.getElementById("abaS2"),"Business Description","✅ \"Slough's #1 phone repair shop. Same-day screen & battery repairs.\""); await sleep(1500); setDot(3); movePointer(204,8); await sleep(800); goodSection(document.getElementById("abaS3"),"Photos & Media","✅ 24 photos uploaded — repairs, staff, shopfront & results"); await sleep(1400); setDot(4); movePointer(256,8); await sleep(800); goodSection(document.getElementById("abaS4"),"Opening Hours","✅ Mon–Sat 9am–6pm listed · Sun 10am–4pm"); await sleep(1400); setDot(5); movePointer(310,8); await sleep(800); goodSection(document.getElementById("abaS5"),"Google Posts","✅ Weekly posts: offers, repairs, tips — driving traffic"); document.getElementById("abaCat").textContent="Phone repair · iPhone repair · Samsung repair · Screen repair"; await sleep(1400); setDot(6); movePointer(362,8); await sleep(800); goodSection(document.getElementById("abaS6"),"Review Responses","✅ Every review replied to within 24hrs — builds trust & ranking"); await sleep(500); stars[3].className="aba-star lighting on"; await sleep(250); stars[3].className="aba-star on"; stars[4].className="aba-star lighting on"; await sleep(250); stars[4].className="aba-star on"; var cnt=4, tgt=47; var ticker=setInterval(()=>{ cnt+=Math.ceil((tgt-cnt)/6); if(cnt>=tgt){ cnt=tgt; clearInterval(ticker); } document.getElementById("abaReviewCount").textContent="4.9 • "+cnt+" reviews"; },80); await sleep(1000); card.className="aba-card after-active"; bar.className="aba-status-bar after"; document.getElementById("abaStatusText").textContent="✅ After VIBZ Optimisation"; ["abaAct3","abaAct4"].forEach(id=>{var el=document.getElementById(id); el.className="aba-action-btn active"; el.style.opacity="1";}); hidePointer(); await sleep(600); document.getElementById("abaReplayBtn").className="aba-replay-btn show"; window._abaRunning=false; }
-
-// ── MENU / SERVICES ──
-function toggleMenu(){document.getElementById('app-menu-layer').classList.toggle('active');} function toggleServices(){document.getElementById('services-layer').classList.toggle('active');} function openServices(){document.getElementById('services-layer').classList.add('active');} function toggleDropdown(id){document.getElementById(id).classList.toggle('active-drop');} function toggleCategories(){document.getElementById('category-layer').classList.toggle('active');}
-function initServicesList(){ const list=document.getElementById('services-list'); list.innerHTML=["Web Design","App Design","Branding","Google Business Profile","Reputation Management"].map(s=>'<div class="service-item">'+s+'</div>').join(''); document.querySelectorAll('.service-item').forEach(el=>{ el.onclick=function(){ el.classList.add('click-highlight'); setTimeout(()=>el.classList.remove('click-highlight'),200); if(el.innerText.includes('Google')){ toggleServices(); runAuditMock(); } }; }); }
-
-// ── OBSERVERS ──
-var abaObserver=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting&&!window._abaRunning){ abaObserver.disconnect(); setTimeout(runABA,600); } }); },{threshold:0.35});
 
 // ── LOAD ──
-window.addEventListener("load",()=>{ setTimeout(()=>{ document.getElementById('app-loader').style.transform='translateY(-100%)'; document.getElementById('app-container').style.opacity='1'; },1800); initServicesList(); var wrap=document.getElementById("abaWrap"); if(wrap) abaObserver.observe(wrap); });
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById('app-loader').style.transform='translateY(-100%)';
+    document.getElementById('app-container').style.opacity='1';
+  },1800);
+});
 
-// ── GLOBAL EXPOSURE ──
-window.runAuditMock=runAuditMock; window.toggleMenu=toggleMenu; window.toggleServices=toggleServices; window.openServices=openServices; window.toggleDropdown=toggleDropdown; window.toggleCategories=toggleCategories; window.runABA=runABA; window.toggleListing=toggleListing;
+window.enablePush=enablePush;
+window.showTab=showTab;
+window.toggleMenu=toggleMenu;
 </script>
 </body>
 </html>
