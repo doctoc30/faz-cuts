@@ -1,14 +1,14 @@
 {
   "id": "/",
-  "name": "VIBZ",
-  "short_name": "VIBZ",
-  "description": "Google Business Profile Specialists",
+  "name": "FixPro - Same Day Phone Repairs",
+  "short_name": "FixPro",
+  "description": "Book iPhone & Samsung repairs in London. Fixed in 1 hour with 6-month warranty.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#FFF5EE",
-  "theme_color": "#FF6B00",
+  "background_color": "#F5F7FA",
+  "theme_color": "#0066FF",
   "prefer_related_applications": false,
   "icons": [
     {
