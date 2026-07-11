@@ -25,76 +25,111 @@
         serviceWorkerUpdaterPath: "OneSignalSDKUpdaterWorker.js",
         notifyButton: { enable: false },
         allowLocalhostAsSecureOrigin: true,
-        // Handle iOS PWA limitation
         promptOptions: {
-          autoPrompt: false // Don't auto-prompt, we'll handle it manually
+          autoPrompt: false
         }
       });
 
-      // Check if we're in standalone mode (installed PWA)
       const isStandalone = window.navigator.standalone === true;
-      console.log('Running in standalone mode:', isStandalone);
-
-      // Handle subscription changes differently for iOS PWA
+      
+      // Check subscription state periodically for iOS PWA
       if (isStandalone) {
-        // Use a different approach for iOS PWA
-        try {
-          // Check current subscription state
-          const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
-          
-          if (isSubscribed) {
-            // Already subscribed - show welcome banner
-            setTimeout(() => showSubscribeBanner(), 1500);
+        // Check every 2 seconds for 30 seconds after app loads
+        let checkCount = 0;
+        const maxChecks = 15;
+        const checkInterval = setInterval(async () => {
+          checkCount++;
+          try {
+            const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+            const wasSubscribed = localStorage.getItem('onesignal_subscribed') === 'true';
+            
+            if (isSubscribed && !wasSubscribed) {
+              // User just subscribed - show thank you!
+              localStorage.setItem('onesignal_subscribed', 'true');
+              showSubscribeBanner();
+              clearInterval(checkInterval);
+            } else if (isSubscribed && wasSubscribed) {
+              // Already subscribed - show subtle notification
+              clearInterval(checkInterval);
+              setTimeout(() => showAlreadySubscribedBanner(), 1000);
+            } else if (checkCount >= maxChecks) {
+              clearInterval(checkInterval);
+            }
+          } catch(e) {
+            console.log('Check failed:', e);
           }
-        } catch(e) {
-          console.log('Subscription check failed on iOS PWA:', e);
-        }
+        }, 2000);
       } else {
-        // Regular browser mode - use event listener
+        // Regular browser mode - event listener works fine
         OneSignal.User.PushSubscription.addEventListener('change', function(event) {
           if (event.current.optedIn === true && event.previous.optedIn === false) {
             showSubscribeBanner();
           }
         });
       }
-
-      // Store subscription state in localStorage for iOS PWA
-      async function checkAndStoreSubscription() {
-        try {
-          const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
-          localStorage.setItem('onesignal_subscribed', isSubscribed ? 'true' : 'false');
-          return isSubscribed;
-        } catch(e) {
-          return false;
-        }
-      }
-
-      // Call this on load
-      checkAndStoreSubscription();
     });
 
-    // Function to show + auto-hide the banner
+    // Function to show thank-you banner
     function showSubscribeBanner() {
-      // Remove any existing banner first
-      const existingBanner = document.getElementById('subscribe-success');
-      if (existingBanner) existingBanner.remove();
-
+      removeExistingBanner();
+      
       const banner = document.createElement('div');
       banner.id = 'subscribe-success';
-      banner.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thanks for subscribing! You\'ll get FixPro deals first.';
+      banner.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;width:100%;justify-content:center;">
+          <i class="fa-solid fa-circle-check" style="font-size:1.4rem;"></i>
+          <span>Thanks for subscribing! You'll get FixPro deals first.</span>
+        </div>
+      `;
       document.body.appendChild(banner);
       
-      // Force banner to show with a delay
-      setTimeout(() => banner.classList.add('show'), 200);
+      // Show with slight delay for smooth animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          banner.classList.add('show');
+        });
+      });
       
-      // Remove after 4.5 seconds
+      // Auto-remove after 4 seconds
       setTimeout(() => {
         banner.classList.remove('show');
-        setTimeout(() => banner.remove(), 300);
-      }, 4500);
+        setTimeout(() => banner.remove(), 400);
+      }, 4000);
     }
 
-    // Modified enablePush function for iOS PWA
+    // Function for already subscribed state
+    function showAlreadySubscribedBanner() {
+      removeExistingBanner();
+      
+      const banner = document.createElement('div');
+      banner.id = 'subscribe-success';
+      banner.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;width:100%;justify-content:center;">
+          <i class="fa-solid fa-bell" style="font-size:1.4rem;"></i>
+          <span>Notifications enabled!</span>
+        </div>
+      `;
+      banner.style.background = '#0066FF';
+      document.body.appendChild(banner);
+      
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          banner.classList.add('show');
+        });
+      });
+      
+      setTimeout(() => {
+        banner.classList.remove('show');
+        setTimeout(() => banner.remove(), 400);
+      }, 3000);
+    }
+
+    function removeExistingBanner() {
+      const existing = document.getElementById('subscribe-success');
+      if (existing) existing.remove();
+    }
+
+    // Main function to request notification permission - NO EXTRA CLICKS
     async function enablePush() {
       if (typeof OneSignal === 'undefined') {
         alert('Please install the app to your home screen for notifications.');
@@ -103,70 +138,48 @@
 
       try {
         const isStandalone = window.navigator.standalone === true;
+        const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+        
+        if (isSubscribed) {
+          showAlreadySubscribedBanner();
+          return;
+        }
         
         if (isStandalone) {
-          // iOS PWA - show a custom prompt
-          const userConfirmed = confirm('Get notified about FixPro deals and repairs! Tap OK to enable notifications.');
-          
-          if (userConfirmed) {
-            try {
-              // Attempt to request permission
-              const result = await OneSignal.Notifications.requestPermission();
-              
-              if (result) {
-                // Store subscription in localStorage for iOS PWA
-                localStorage.setItem('onesignal_subscribed', 'true');
-                showSubscribeBanner();
-              } else {
-                alert('Please allow notifications in your iPhone settings.');
-              }
-            } catch(e) {
-              console.error('iOS PWA permission error:', e);
-              alert('To enable notifications, go to: Settings > FixPro > Notifications > Allow Notifications');
-            }
-          }
+          // For iOS PWA - request permission directly, no extra click
+          // The thank you will be shown by the interval checker above
+          await OneSignal.Notifications.requestPermission({
+            modalPrompt: true // Use the native iOS prompt
+          });
+          // Don't show anything here - let the interval checker detect the change
         } else {
           // Regular browser mode
-          const permission = await OneSignal.Notifications.permission;
-          if (permission === true) {
-            alert('Already subscribed!');
-            return;
-          }
           await OneSignal.Notifications.requestPermission();
-          // Banner will show via event listener
+          // Event listener will handle the thank you
         }
       } catch(e) {
         console.error('OneSignal error:', e);
-        
-        // Fallback for iOS PWA
         if (window.navigator.standalone === true) {
-          alert('To enable notifications: Go to iPhone Settings > FixPro > Notifications > Allow Notifications');
+          // On iOS, if the system prompt was dismissed or failed
+          alert('To enable notifications:\n\n1. Go to iPhone Settings\n2. Scroll to FixPro\n3. Tap Notifications\n4. Enable Allow Notifications');
         } else {
           alert('Error: ' + e.message);
         }
       }
     }
 
-    // Add a function to check subscription on page load for iOS PWA
-    window.addEventListener('load', function() {
-      const isStandalone = window.navigator.standalone === true;
-      if (isStandalone) {
-        const wasSubscribed = localStorage.getItem('onesignal_subscribed') === 'true';
-        if (wasSubscribed) {
-          // Show a subtle confirmation when app loads
-          setTimeout(() => {
-            const banner = document.createElement('div');
-            banner.id = 'subscribe-success';
-            banner.innerHTML = '<i class="fa-solid fa-circle-check"></i> Notifications enabled!';
-            banner.style.background = '#0066FF';
-            document.body.appendChild(banner);
-            setTimeout(() => banner.classList.add('show'), 200);
-            setTimeout(() => {
-              banner.classList.remove('show');
-              setTimeout(() => banner.remove(), 300);
-            }, 3000);
-          }, 2000);
-        }
+    // Also check on page visibility change (user returns from settings)
+    document.addEventListener('visibilitychange', async function() {
+      if (!document.hidden && typeof OneSignal !== 'undefined') {
+        try {
+          const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+          const wasSubscribed = localStorage.getItem('onesignal_subscribed') === 'true';
+          
+          if (isSubscribed && !wasSubscribed) {
+            localStorage.setItem('onesignal_subscribed', 'true');
+            showSubscribeBanner();
+          }
+        } catch(e) {}
       }
     });
 
@@ -195,34 +208,41 @@
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Inter',sans-serif;}
   body,html{height:100%;background-color:var(--gray-light);color:var(--text);overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;}
 
-  /* Subscribe Success Banner */
+  /* Subscribe Success Banner - Enhanced */
   #subscribe-success{
     position:fixed;
-    top:calc(var(--safe-top) + 90px);
-    left:20px;
-    right:20px;
+    top:calc(var(--safe-top) + 100px);
+    left:50%;
+    transform:translateX(-50%) translateY(-30px);
+    max-width:90%;
+    width:auto;
+    min-width:280px;
     background:var(--accent);
     color:white;
-    padding:16px 20px;
-    border-radius:14px;
-    font-weight:800;
+    padding:16px 24px;
+    border-radius:16px;
+    font-weight:700;
     font-size:0.95rem;
     text-align:center;
     z-index:99999;
-    box-shadow:0 12px 32px rgba(0,212,170,0.4);
-    transform:translateY(-20px);
+    box-shadow:0 12px 40px rgba(0,0,0,0.2);
     opacity:0;
-    transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+    transition:all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:10px;
+    gap:12px;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
   }
   #subscribe-success.show{
-    transform:translateY(0);
+    transform:translateX(-50%) translateY(0);
     opacity:1;
   }
-  #subscribe-success i{font-size:1.2rem;}
+  #subscribe-success i{
+    font-size:1.3rem;
+    flex-shrink:0;
+  }
 
   /* Loader */
   #app-loader{position:fixed;inset:0;background:var(--primary-light);z-index:10000;display:flex;align-items:center;justify-content:center;transition:transform 0.8s cubic-bezier(0.9,0,0.1,1);}
@@ -243,7 +263,7 @@
   #app-menu-layer.active .menu-item{opacity:1;transform:translateY(0);}
   .menu-item:nth-child(1){transition-delay:0.1s;}.menu-item:nth-child(2){transition-delay:0.2s;}.menu-item:nth-child(3){transition-delay:0.3s;}.menu-item:nth-child(4){transition-delay:0.4s;}
   .menu-footer{margin-top:auto;padding-bottom:calc(var(--safe-bottom) + 20px);font-weight:800;font-size:0.8rem;letter-spacing:1px;color:#bbb;text-align:center;}
-  .close-btn{width:60px;height:60px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 20px rgba(0,102,255,0.2);cursor:pointer;margin-top:20px;}
+  .close-btn{width:60px;height:60px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 20px rgba(0,102,255,0.2);cursor:pointer;margin-top:20px;border:none;}
 
   /* Main App */
   #app-container{min-height:100vh;display:flex;flex-direction:column;opacity:0;transition:opacity 0.5s ease-in;position:relative;overscroll-behavior:none;}
@@ -276,7 +296,8 @@
   .device-pills::-webkit-scrollbar{display:none;}
   .device-pill{background:white;border:2px solid var(--border);border-radius:60px;padding:10px 18px;font-weight:800;font-size:0.9rem;white-space:nowrap;cursor:pointer;transition:all 0.2s;}
   .device-pill.active{background:var(--primary);color:white;border-color:var(--primary);}
-  .book-btn{background:var(--accent);color:white;border:none;border-radius:14px;padding:16px;width:100%;font-weight:900;font-size:1.1rem;cursor:pointer;box-shadow:0 8px 20px rgba(0,212,170,0.3);}
+  .book-btn{background:var(--accent);color:white;border:none;border-radius:14px;padding:16px;width:100%;font-weight:900;font-size:1.1rem;cursor:pointer;box-shadow:0 8px 20px rgba(0,212,170,0.3);transition:transform 0.2s;}
+  .book-btn:active{transform:scale(0.97);}
 
   /* Trust Strip */
   .trust-strip{background:white;padding:20px;display:flex;justify-content:space-around;text-align:center;border-bottom:1px solid var(--border);}
@@ -305,7 +326,8 @@
   .repair-features{margin:12px 0;}
   .repair-feature{display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:600;margin:6px 0;color:var(--gray);}
   .repair-feature i{color:var(--accent);font-size:0.8rem;}
-  .repair-cta{background:var(--primary);color:white;border:none;border-radius:12px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;}
+  .repair-cta{background:var(--primary);color:white;border:none;border-radius:12px;padding:14px;width:100%;font-weight:900;font-size:1rem;cursor:pointer;transition:transform 0.2s;}
+  .repair-cta:active{transform:scale(0.97);}
   .repair-card.featured .repair-cta{background:var(--accent);}
 
   /* Price List Table */
@@ -342,7 +364,7 @@
   .dock-btn i{font-size:1.4rem;}
   .dock-btn span{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
   .dock-center{width:60px;height:60px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;margin-top:-32px;border:4px solid var(--gray-light);box-shadow:0 8px 20px rgba(0,212,170,0.35);cursor:pointer;transition:transform 0.2s;text-decoration:none;}
-  .dock-center:hover{transform:scale(1.05);}
+  .dock-center:active{transform:scale(0.95);}
 
   /* Footer */
   footer{margin-top:0;padding:32px 20px 100px;background:white;text-align:center;border-top:1px solid var(--border);}
@@ -350,7 +372,6 @@
   .footer-cta h3{font-size:1.3rem;font-weight:900;margin-bottom:8px;}
   .footer-cta p{font-size:0.9rem;margin-bottom:16px;opacity:0.9;}
   .footer-btn{background:white;color:var(--primary);border:none;border-radius:12px;padding:14px 32px;font-weight:900;font-size:1rem;cursor:pointer;}
-  .copyright{font-weight:600;font-size:0.85rem;color:var(--gray);}
 
   /* Hide sections by default */
   .tab-content{display:none;}
@@ -370,7 +391,7 @@
 <div id="app-menu-layer">
   <div class="menu-header">
     <div class="app-logo">FixPro<span>.</span></div>
-    <div class="close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
+    <button class="close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <div class="menu-links">
     <a href="#" class="menu-item" onclick="toggleMenu();showTab('book')">Book Repair</a>
@@ -621,10 +642,10 @@
 
   <nav class="app-dock">
     <a href="#" class="dock-btn active" onclick="showTab('book')"><i class="fa-solid fa-house-chimney"></i><span>HOME</span></a>
-    <div class="dock-btn" onclick="showTab('prices')"><i class="fa-solid fa-tag"></i><span>PRICES</span></div>
+    <button class="dock-btn" onclick="showTab('prices')"><i class="fa-solid fa-tag"></i><span>PRICES</span></button>
     <a href="tel:02012345678" class="dock-center"><i class="fa-solid fa-phone"></i></a>
     <a href="#" class="dock-btn" onclick="showTab('track')"><i class="fa-solid fa-truck-fast"></i><span>TRACK</span></a>
-    <div class="dock-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i><span>MENU</span></div>
+    <button class="dock-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i><span>MENU</span></button>
   </nav>
 </div>
 
@@ -640,7 +661,7 @@ function showTab(tabId) {
       t.classList.add('active');
     }
   });
-  window.scrollTo(0, 0);
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 // ── Device Pill Selection ──
