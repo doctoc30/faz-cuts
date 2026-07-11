@@ -25,7 +25,31 @@
         notifyButton: { enable: false },
         allowLocalhostAsSecureOrigin: true
       });
+
+      // NEW: Show thank-you banner when user subscribes
+      OneSignal.User.PushSubscription.addEventListener('change', function(event) {
+        if (event.current.optedIn === true && event.previous.optedIn === false) {
+          showSubscribeBanner();
+        }
+      });
     });
+
+    // NEW: Function to show + auto-hide the banner
+    function showSubscribeBanner() {
+      const banner = document.createElement('div');
+      banner.id = 'subscribe-success';
+      banner.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thanks for subscribing! You’ll get FixPro deals first.';
+      document.body.appendChild(banner);
+      
+      // Fade in
+      setTimeout(() => banner.classList.add('show'), 100);
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        banner.classList.remove('show');
+        setTimeout(() => banner.remove(), 300);
+      }, 4000);
+    }
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -48,6 +72,35 @@
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Inter',sans-serif;}
   body,html{height:100%;background-color:var(--gray-light);color:var(--text);overflow-x:hidden;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;}
   
+  /* NEW: Subscribe Success Banner */
+  #subscribe-success{
+    position:fixed;
+    top:calc(var(--safe-top) + 90px);
+    left:20px;
+    right:20px;
+    background:var(--accent);
+    color:white;
+    padding:16px 20px;
+    border-radius:14px;
+    font-weight:800;
+    font-size:0.95rem;
+    text-align:center;
+    z-index:99999;
+    box-shadow:0 12px 32px rgba(0,212,170,0.4);
+    transform:translateY(-20px);
+    opacity:0;
+    transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+  #subscribe-success.show{
+    transform:translateY(0);
+    opacity:1;
+  }
+  #subscribe-success i{font-size:1.2rem;}
+
   /* Loader - kept your style */
   #app-loader{position:fixed;inset:0;background:var(--primary-light);z-index:10000;display:flex;align-items:center;justify-content:center;transition:transform 0.8s cubic-bezier(0.9,0,0.1,1);}
   .loader-content{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1;}
@@ -400,6 +453,7 @@
               <div class="review-name">James S.</div>
               <div class="review-stars">★★★★★</div>
             </div>
+          </div>
           <div class="review-text">Cracked my iPhone 14 screen on Monday. Walked in, fixed in 40 mins, good as new. Staff were brilliant. Highly recommend!</div>
           <div class="review-date">2 days ago · Google</div>
         </div>
@@ -451,7 +505,43 @@
   </nav>
 </div>
 
-<script>
+
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "31f3576f-7be4-4c8e-b49a-56b905f4dcfc",
+        serviceWorkerPath: "sw.js",
+        serviceWorkerUpdaterPath: "OneSignalSDKUpdaterWorker.js",
+        notifyButton: { enable: false },
+        allowLocalhostAsSecureOrigin: true
+      });
+
+      // NEW: Show thank-you banner when user subscribes
+      OneSignal.User.PushSubscription.addEventListener('change', function(event) {
+        if (event.current.optedIn === true && event.previous.optedIn === false) {
+          showSubscribeBanner();
+        }
+      });
+    });
+
+    // NEW: Function to show + auto-hide the banner
+    function showSubscribeBanner() {
+      const banner = document.createElement('div');
+      banner.id = 'subscribe-success';
+      banner.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thanks for subscribing! You’ll get FixPro deals first.';
+      document.body.appendChild(banner);
+      
+      // Fade in
+      setTimeout(() => banner.classList.add('show'), 100);
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        banner.classList.remove('show');
+        setTimeout(() => banner.remove(), 300);
+      }, 4000);
+    }
+
 // ── OneSignal Permission ──
 async function enablePush() {
   if (typeof OneSignal === 'undefined') {
@@ -465,7 +555,7 @@ async function enablePush() {
       return;
     }
     await OneSignal.Notifications.requestPermission();
-    alert('Notifications enabled! Get repair updates instantly.');
+    // Banner will auto-show via the event listener above
   } catch(e) {
     console.error('OneSignal error:', e);
     alert('Error: ' + e.message);
@@ -510,5 +600,3 @@ window.enablePush=enablePush;
 window.showTab=showTab;
 window.toggleMenu=toggleMenu;
 </script>
-</body>
-</html>
